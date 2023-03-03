@@ -1,11 +1,65 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import { ethers } from 'ethers'
+import { useAccount, useContract, useSigner, useSignMessage } from 'wagmi'
+import { Web3Button } from '@web3modal/react'
 import styles from '@/styles/Home.module.css'
+import salesAbi from '@/assets/sales-abi.json'
+import nftAbi from '@/assets/nft-abi.json'
 
-const inter = Inter({ subsets: ['latin'] })
+const SALES_CONTRACT_ADDRESS = '0x7ba75866bF445b476b1004D0e41BD1749E0cb1CF'
+const NFT_CONTRACT_ADDRESS = '0x25bf876880A40b77F51F878470C9Ca1c67F7fd4a'
+
+const CONFIRMATIONS_COUNT = 10
+
+const IS_WHITELISTED = true
 
 export default function Home() {
+  const { data: signer } = useSigner()
+
+  const { address } = useAccount()
+
+  const { signMessageAsync } = useSignMessage()
+
+  const salesContractInstance = useContract({
+    address: SALES_CONTRACT_ADDRESS,
+    abi: salesAbi,
+    signerOrProvider: signer,
+  })
+
+  const nftContactInstance = useContract({
+    address: NFT_CONTRACT_ADDRESS,
+    abi: nftAbi,
+    signerOrProvider: signer,
+  })
+
+  const getNFTCount = async () => {
+    const response = await nftContactInstance?.balanceOf(address)
+    return response?.toString()
+  }
+
+  const generateSignature = async () => {
+    if (address === undefined) throw new Error('Address does not exist')
+    const message = ethers.utils.keccak256(ethers.utils.arrayify(address))
+    const signature = await signMessageAsync({ message: ethers.utils.arrayify(message) })
+    return ethers.utils.splitSignature(signature)
+  }
+
+  const purchaseToken = async () => {
+    const { wait } = await salesContractInstance?.purchaseToken()
+    await wait(CONFIRMATIONS_COUNT)
+  }
+
+  const purchaseTokenWhitelisted = async () => {
+    const { r, s, v } = await generateSignature()
+    const { wait } = await salesContractInstance?.purchaseTokenWhiteListed(r, s, v)
+    await wait(CONFIRMATIONS_COUNT)
+  }
+
+  const handleMint = async () => {
+    if (IS_WHITELISTED) purchaseTokenWhitelisted().then()
+    else purchaseToken().then()
+  }
+
   return (
     <>
       <Head>
@@ -15,108 +69,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
+        <Web3Button />
+        <button onClick={handleMint}>Mint NFT</button>
       </main>
     </>
   )
