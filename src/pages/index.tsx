@@ -1,64 +1,80 @@
-import Head from 'next/head'
-import { ethers } from 'ethers'
-import { useAccount, useContract, useSigner, useSignMessage } from 'wagmi'
-import { Web3Button } from '@web3modal/react'
-import styles from '@/styles/Home.module.css'
-import salesAbi from '@/assets/sales-abi.json'
-import nftAbi from '@/assets/nft-abi.json'
+import { useState } from "react";
+import Image from "next/image";
+import Head from "next/head";
+import { ethers } from "ethers";
+import { useAccount, useContract, useSigner, useSignMessage } from "wagmi";
+import { Web3Button } from "@web3modal/react";
+import s from "styles/home.module.scss";
 
-const SALES_CONTRACT_ADDRESS = '0x7ba75866bF445b476b1004D0e41BD1749E0cb1CF'
-const NFT_CONTRACT_ADDRESS = '0x25bf876880A40b77F51F878470C9Ca1c67F7fd4a'
+import ReferralAccessModal from "components/Modal/ReferralAccessModal";
 
-const CONFIRMATIONS_COUNT = 10
+import salesAbi from "assets/sales-abi.json";
+import nftAbi from "assets/nft-abi.json";
 
-const IS_WHITELISTED = true
+const SALES_CONTRACT_ADDRESS = "0x7ba75866bF445b476b1004D0e41BD1749E0cb1CF";
+const NFT_CONTRACT_ADDRESS = "0x25bf876880A40b77F51F878470C9Ca1c67F7fd4a";
+
+const CONFIRMATIONS_COUNT = 10;
+
+const IS_WHITELISTED = true;
 
 export default function Home() {
-  const { data: signer } = useSigner()
+  const [referralModalOpen, setReferralModalOpen] = useState<boolean>(false);
+  const { data: signer } = useSigner();
 
-  const { address } = useAccount()
+  const { address } = useAccount();
 
-  const { signMessageAsync } = useSignMessage()
+  const { signMessageAsync } = useSignMessage();
 
   const salesContractInstance = useContract({
     address: SALES_CONTRACT_ADDRESS,
     abi: salesAbi,
     signerOrProvider: signer,
-  })
+  });
 
   const nftContactInstance = useContract({
     address: NFT_CONTRACT_ADDRESS,
     abi: nftAbi,
     signerOrProvider: signer,
-  })
+  });
 
   const getNFTCount = async () => {
-    const response = await nftContactInstance?.balanceOf(address)
-    return response?.toString()
-  }
+    const response = await nftContactInstance?.balanceOf(address);
+    return response?.toString();
+  };
 
   const generateSignature = async () => {
-    if (address === undefined) throw new Error('Address does not exist')
-    const message = ethers.utils.keccak256(ethers.utils.arrayify(address))
-    const signature = await signMessageAsync({ message: ethers.utils.arrayify(message) })
-    return ethers.utils.splitSignature(signature)
-  }
+    if (address === undefined) throw new Error("Address does not exist");
+    const message = ethers.utils.keccak256(ethers.utils.arrayify(address));
+    const signature = await signMessageAsync({
+      message: ethers.utils.arrayify(message),
+    });
+    return ethers.utils.splitSignature(signature);
+  };
 
   const purchaseToken = async () => {
-    const { wait } = await salesContractInstance?.purchaseToken()
-    await wait(CONFIRMATIONS_COUNT)
-  }
+    const { wait } = await salesContractInstance?.purchaseToken();
+    await wait(CONFIRMATIONS_COUNT);
+  };
 
   const purchaseTokenWhitelisted = async () => {
-    const { r, s, v } = await generateSignature()
-    const { wait } = await salesContractInstance?.purchaseTokenWhiteListed(r, s, v)
-    await wait(CONFIRMATIONS_COUNT)
-  }
+    const { r, s, v } = await generateSignature();
+    const { wait } = await salesContractInstance?.purchaseTokenWhiteListed(
+      r,
+      s,
+      v
+    );
+    await wait(CONFIRMATIONS_COUNT);
+  };
 
   const handleMint = async () => {
-    if (IS_WHITELISTED) purchaseTokenWhitelisted().then()
-    else purchaseToken().then()
-  }
+    if (IS_WHITELISTED) purchaseTokenWhitelisted().then();
+    else purchaseToken().then();
+  };
+
+  const closeReferralModal = () => {
+    setReferralModalOpen(false);
+  };
 
   return (
     <>
@@ -68,10 +84,24 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <main className={s.main}>
+        <div className={s.container}></div>
         <Web3Button />
+        <div className={s.imageWrapper}>
+          <Image
+            src="/images/cube.png"
+            fill
+            alt=""
+            style={{ objectFit: "cover" }}
+          />
+        </div>
         <button onClick={handleMint}>Mint NFT</button>
+        <button onClick={() => setReferralModalOpen(true)}>Mint NFT</button>
+        <ReferralAccessModal
+          open={referralModalOpen}
+          close={closeReferralModal}
+        />
       </main>
     </>
-  )
+  );
 }
