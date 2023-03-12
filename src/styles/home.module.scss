@@ -1,4 +1,178 @@
 @import "~/src/styles/variables";
 
+
 .container {
+  margin-left: 140px;
+  margin-top: 63px;
+  width: 480px;
+}
+
+
+.cubeWrapper {
+  position: fixed;
+  //right: 413px;
+  left: 47%;
+  top: 0;
+  width: 618px;
+  height: 681px;
+}
+
+.timer {
+  position: fixed;
+  top: 65px;
+  right: 123px;
+  background-color: #FFFFFF;
+  padding: 19px 22px 25px 60px;
+  border-radius: 25px;
+}
+
+.time {
+  font-family: HeadingNow;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 100%;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.descriptionBtn {
+  position: fixed;
+  bottom: 79px;
+  right: 123px;
+  background-color: #FFFFFF;
+  padding: 17px 38px 18px 77px;
+  border-radius: 20px;
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 125%;
+}
+
+.header{
+  display: flex;
+  gap: 83px;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.logoWrapper{
+  width: 100px;
+  height: 58px;
+  position: relative;
+}
+
+.languageBtn{
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  padding: 12px 33px 11px 45px;
+  border-radius: 16px;
+}
+
+.tittle{
+  text-transform: uppercase;
+  font-family: HeadingNow;
+  margin-top: 190px;
+  font-weight: 700;
+  font-size: 65px;
+  line-height: 90%;
+}
+
+.nftBlock{
+  margin-top: 139px;
+  background-color: #FFFFFF;
+  padding: 39px 20px 40px 45px;
+  border-radius: 25px;
+  width: 320px;
+  font-family: Roboto;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: rgba(144, 167, 188, 1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 25px;
+}
+
+.nftAmount{
+  font-family: HeadingNow;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 20px;
+  color: $outstandingColor;
+}
+
+.whitelist{
+  background-color: $outstandingColor;
+  margin-top: 25px;
+  height: 70px;
+  width: 319px;
+  border-radius: 20px;
+}
+
+.heading{
+  margin-top: 135px;
+  text-transform: uppercase;
+  font-family: HeadingNow;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 90%;
+}
+
+.textBlock{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 435px;
+  margin-top: 50px;
+  font-weight: 600;
+  line-height: 25px;
+  letter-spacing: 0;
+}
+
+.footer{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 44px;
+  margin-top: 134px;
+  padding-bottom: 48px;
+}
+
+.infoBlock{
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 15px;
+  letter-spacing: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 3px;
+}
+
+.social{
+  display: flex;
+  gap: 50px;
+}
+
+.link{
+  position: relative;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0;
+}
+
+.underline{
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  background-color: rgba(30, 63, 94, 1);
+  height: 1px;
+  width: 100%;
 }

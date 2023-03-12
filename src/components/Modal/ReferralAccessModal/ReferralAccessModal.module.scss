@@ -3,7 +3,7 @@ $mobile: 420px;
 
 .modalWindowWrapper {
   padding: 0 20px;
-  width: 726px;
+  width: 727px;
   max-width: 100%;
 
   @media (max-width: $tablet) {
@@ -67,7 +67,7 @@ $mobile: 420px;
 
     .title {
       font-family: HeadingNow;
-      font-size: 16px;
+      font-size: 30px;
       max-width: 90%;
       text-transform: uppercase;
 
@@ -79,7 +79,7 @@ $mobile: 420px;
   }
 
   .content {
-    padding: 41.5px 44px 37px 47px;
+    padding: 44px 44px 70px 47px;
 
     @media (max-width: $mobile) {
       padding: 35px 38px 48px;
@@ -87,7 +87,7 @@ $mobile: 420px;
 
     .title {
       font-family: HeadingNow;
-      font-size: 16px;
+      font-size: 25px;
       color: var(--dark-blue);
       text-transform: uppercase;
 
@@ -96,14 +96,29 @@ $mobile: 420px;
       }
     }
 
-    .text {
+    .textBlock{
+      display: flex;
+      flex-direction: column;
+      gap: 23px;
       margin-top: 25px;
       color: var(--dark-blue);
       font-weight: 600;
       font-size: 18px;
+      line-height: 23px;
+
+      //@media (max-width: $tablet) {
+      //  font-size: 15px;
+      //}
+    }
+
+    .heading {
+      font-family: HeadingNow;
+      font-size: 16px;
+      color: var(--dark-blue);
+      text-transform: uppercase;
 
       @media (max-width: $tablet) {
-        font-size: 15px;
+        font-size: 12px;
       }
     }
 
@@ -155,5 +170,9 @@ $mobile: 420px;
         margin-left: auto;
       }
     }
+
   }
 }
+
+
+

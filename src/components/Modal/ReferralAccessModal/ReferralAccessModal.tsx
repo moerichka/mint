@@ -35,7 +35,7 @@ function ReferralAccessModal({ open, close }: Props) {
         <div className={s.modalWindow}>
           <div className={s.summeryWrapper}>
             <div className={s.summery}>
-              <div className={s.title}>access to referral system</div>
+              <div className={s.title}>HOW IT WORKS?</div>
               <button type="button" className={s.close} onClick={onClose}>
                 <span className="icon-close" />
               </button>
@@ -43,20 +43,18 @@ function ReferralAccessModal({ open, close }: Props) {
           </div>
           <div className={s.content}>
             <div className={s.title}>Referral request form</div>
-            <div className={s.text}>
-              The Trace referral system is designed for influencers around the
-              world. Bring value and get rewarded! Apply by telling us about
-              yourself and your amazing experience:
+            <div className={s.textBlock}>
+              <p>
+                The Trace referral system is designed for influencers around the world. Bring value and get rewarded!
+                <br/>
+                Apply by telling us about yourself and your amazing experience:
+              </p>
+              <p>
+                The Trace referral system is designed for influencers around the world. Bring value and get rewarded!
+                <br/>
+                Apply by telling us about yourself and your amazing experience:
+              </p>
             </div>
-            <form className={s.inputWrapper} onSubmit={formSubmit}>
-              <textarea
-                name="userInfo"
-                value={userInfo}
-                onChange={userInfoChangeHandler}
-                className={s.userInfo}
-                placeholder="Tell us about yourself"
-              />
-            </form>
           </div>
         </div>
       </div>
