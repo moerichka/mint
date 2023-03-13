@@ -14,12 +14,15 @@ import nftAbi from "assets/nft-abi.json";
 const SALES_CONTRACT_ADDRESS = "0x7ba75866bF445b476b1004D0e41BD1749E0cb1CF";
 const NFT_CONTRACT_ADDRESS = "0x25bf876880A40b77F51F878470C9Ca1c67F7fd4a";
 
+const REACT_APP_API_ENDPOINT = "https://trace-core.flamma.app";
+
 const CONFIRMATIONS_COUNT = 10;
 
 const IS_WHITELISTED = true;
 
 export default function Home() {
   const [referralModalOpen, setReferralModalOpen] = useState<boolean>(false);
+  const [isWhiteListed, setIsWhiteListed] = useState<boolean>(false);
   const { data: signer } = useSigner();
 
   const { address } = useAccount();
@@ -74,6 +77,28 @@ export default function Home() {
 
   const closeReferralModal = () => {
     setReferralModalOpen(false);
+  };
+
+  const checkWhiteList = async () => {
+    try {
+      const response = await fetch(`${REACT_APP_API_ENDPOINT}/white-list`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ wallet_address: await signer?.getAddress() }),
+      });
+      if (!response.ok) {
+        throw new Error("Server error");
+      }
+      const data = await response.json();
+      if (data.result) {
+        setIsWhiteListed(true);
+      }
+      console.log(data);
+    } catch (error) {
+      console.log("error: ", error);
+    }
   };
 
   return (
