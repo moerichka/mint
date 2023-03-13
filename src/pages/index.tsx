@@ -87,27 +87,6 @@ export default function Home() {
         <link rel="icon" href="" />
       </Head>
       <main className={s.main}>
-        <div className={s.cubeWrapper}>
-          <Image
-            src="/images/cube.png"
-            fill
-            alt=""
-            style={{ objectFit: "cover",  marginTop: "115px"}}
-          />
-          <div style={{height: '100vh',width: '290px',backgroundColor: 'var(--main-color)', marginLeft: '172px'}} />
-        </div>
-        <div className={s.timer}>
-          <span className={s.time}>
-            12d : 16h : 45m
-          </span>
-        </div>
-        <button className={s.descriptionBtn} onClick={() => setReferralModalOpen(true)}>
-          How it works?
-        </button>
-        <ReferralAccessModal
-            open={referralModalOpen}
-            close={closeReferralModal}
-        />
         <div className={s.container}>
           <header className={s.header}>
             <div className={s.logoWrapper}>
@@ -128,6 +107,19 @@ export default function Home() {
             UPCOMING FREE MINT NFT pass
             <span style={{color: "rgba(255, 165, 59, 1)"}}> metatRACE</span>
           </h1>
+          <div className={s.timer}>
+          <span className={s.time}>
+            12d : 16h : 45m
+          </span>
+          </div>
+          <div className={s.cubeWrapper}>
+            <Image
+                src="/images/cube.png"
+                fill
+                alt=""
+                style={{ objectFit: "cover",  marginTop: "115px"}}
+            />
+            <div className={s.line}/></div>
           <div className={s.nftBlock}>
               <span>total: </span>
               <span className={s.nftAmount}>3000 NFT</span>
@@ -135,6 +127,13 @@ export default function Home() {
           <button className={s.whitelist}>
 
           </button>
+          <button className={s.descriptionBtn} onClick={() => setReferralModalOpen(true)}>
+            How it works?
+          </button>
+          <ReferralAccessModal
+              open={referralModalOpen}
+              close={closeReferralModal}
+          />
           <h2 className={s.heading}>
             Only for NFT Pass owners, the following events will open!
           </h2>
@@ -151,7 +150,7 @@ export default function Home() {
           </p>
           </div>
           <div className={s.footer}>
-            <div className={s.logoWrapper}>
+            <div className={s.logoWrapper  + ' ' + s.desktop}>
               <Image
                   src="/images/logo.svg"
                   fill
@@ -160,7 +159,9 @@ export default function Home() {
               />
             </div>
             <div className={s.infoBlock}>
-              <p>© 2022 - Copyright by MIXR Lab. All rights reserved.  </p>
+              <p className={s.desktop}>
+                © 2022 - Copyright by MIXR Lab. All rights reserved.
+              </p>
               <div className={s.social}>
                 <a href="#" className={s.link}>
                   Terms of use

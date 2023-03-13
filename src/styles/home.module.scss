@@ -7,7 +7,6 @@
   width: 480px;
 }
 
-
 .cubeWrapper {
   position: fixed;
   //right: 413px;
@@ -17,6 +16,13 @@
   height: 681px;
 }
 
+.line{
+  height: 100vh;
+  width: 290px;
+  background-color: var(--main-color) ;
+  margin-left: 172px;
+}
+
 .timer {
   position: fixed;
   top: 65px;
@@ -24,6 +30,7 @@
   background-color: #FFFFFF;
   padding: 19px 22px 25px 60px;
   border-radius: 25px;
+  z-index: 1;
 }
 
 .time {
@@ -175,4 +182,109 @@
   background-color: rgba(30, 63, 94, 1);
   height: 1px;
   width: 100%;
+}
+
+@media (max-width: 1250px) {
+
+  .desktop{
+    display: none;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cubeWrapper {
+    position: relative;
+    width: 280px;
+    height: 309px;
+    left: 0;
+    margin-top: -85px;
+  }
+
+  .line{
+    display: none;
+  }
+
+  .timer {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-top: 30px;
+    text-align: right;
+    width: 150px;
+    padding: 14px 14px 14px 20px;
+    border-radius: 17px;
+  }
+
+  .time{
+    font-size: 18px;
+    text-align: right;
+  }
+
+  .descriptionBtn {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    margin-top: 15px;
+    width: 220px;
+    font-size: 15px;
+    border-radius: 16px;
+  }
+
+  .textBlock{
+    width: 100%;
+    margin-top: 50px;
+  }
+
+  .tittle{
+    margin-top: 60px;
+    font-size: 47px;
+  }
+
+  .nftBlock{
+    width: 220px;
+    font-size: 15px;
+    gap: 9px;
+    align-items: initial;
+    padding: 20px 20px 20px 36px;
+    border-radius: 16px;
+  }
+
+  .whitelist{
+    margin-top: 15px;
+    width: 220px;
+    height: 60px;
+  }
+
+  .nftAmount{
+    line-height: 16px;
+    font-size: 27px;
+  }
+
+  .heading{
+    margin-top: 85px;
+    font-size: 28px;
+  }
+
+  .textBlock{
+    margin-top: 40px;
+    font-size: 14px;
+    gap: 12px;
+  }
+
+  .footer{
+    margin-top: 75px;
+  }
+
+  .link{
+    font-size: 9px;
+  }
+
 }
