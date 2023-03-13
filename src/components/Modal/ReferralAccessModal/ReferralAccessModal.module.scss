@@ -3,7 +3,7 @@ $mobile: 420px;
 
 .modalWindowWrapper {
   padding: 0 20px;
-  width: 726px;
+  width: 727px;
   max-width: 100%;
 
   @media (max-width: $tablet) {
@@ -23,6 +23,7 @@ $mobile: 420px;
 
   @media (max-width: $mobile) {
     border-radius: 30px 30px 0 0;
+    background-color: white;
   }
 
   .summeryWrapper {
@@ -30,6 +31,10 @@ $mobile: 420px;
 
     @media (max-width: $tablet) {
       padding: 5px 5px 0 5px;
+    }
+
+    @media (max-width: $mobile) {
+      margin-top: 28px;
     }
   }
 
@@ -46,10 +51,17 @@ $mobile: 420px;
     align-items: center;
     min-height: 88px;
 
-    @media (max-width: $tablet) {
-      padding: 0 14px;
-      min-height: 75px;
+    //@media (max-width: $tablet) {
+    //  padding: 0 14px;
+    //  min-height: 75px;
+    //}
+    @media (max-width: $mobile) {
+      background-color: white;
+      color: var(--main-color);
+      box-shadow: none;
     }
+
+
 
     .close {
       position: absolute;
@@ -67,19 +79,19 @@ $mobile: 420px;
 
     .title {
       font-family: HeadingNow;
-      font-size: 16px;
+      font-size: 30px;
       max-width: 90%;
       text-transform: uppercase;
 
-      @media (max-width: $tablet) {
-        max-width: 80%;
-        font-size: 13px;
-      }
+      //@media (max-width: $tablet) {
+      //  max-width: 80%;
+      //  font-size: 13px;
+      //}
     }
   }
 
   .content {
-    padding: 41.5px 44px 37px 47px;
+    padding: 44px 44px 70px 47px;
 
     @media (max-width: $mobile) {
       padding: 35px 38px 48px;
@@ -87,24 +99,40 @@ $mobile: 420px;
 
     .title {
       font-family: HeadingNow;
-      font-size: 16px;
+      font-size: 25px;
       color: var(--dark-blue);
       text-transform: uppercase;
 
-      @media (max-width: $tablet) {
-        font-size: 12px;
-      }
+      //@media (max-width: $tablet) {
+      //  font-size: 12px;
+      //}
     }
 
-    .text {
+    .textBlock{
+      display: flex;
+      flex-direction: column;
+      gap: 23px;
       margin-top: 25px;
       color: var(--dark-blue);
       font-weight: 600;
       font-size: 18px;
+      line-height: 23px;
 
-      @media (max-width: $tablet) {
-        font-size: 15px;
+      @media (max-width: $mobile) {
+        font-size: 12px;
+        line-height: 18px;
       }
+    }
+
+    .heading {
+      font-family: HeadingNow;
+      font-size: 16px;
+      color: var(--dark-blue);
+      text-transform: uppercase;
+
+      //@media (max-width: $tablet) {
+      //  font-size: 12px;
+      //}
     }
 
     .inputWrapper {
@@ -132,10 +160,10 @@ $mobile: 420px;
         color: var(--dark-blue);
       }
 
-      @media (max-width: $tablet) {
-        font-size: 15px;
-        padding: 20px 15px 20px;
-      }
+      //@media (max-width: $tablet) {
+      //  font-size: 15px;
+      //  padding: 20px 15px 20px;
+      //}
     }
 
     .submit {
@@ -155,5 +183,9 @@ $mobile: 420px;
         margin-left: auto;
       }
     }
+
   }
 }
+
+
+

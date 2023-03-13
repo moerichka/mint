@@ -1,4 +1,476 @@
 @import "~/src/styles/variables";
 
+
 .container {
+  margin-left: 140px;
+  margin-top: 63px;
+  width: 480px;
+}
+
+.cubeWrapper {
+  position: fixed;
+  //right: 413px;
+  left: 47%;
+  top: 0;
+  width: 618px;
+  height: 681px;
+}
+
+.line{
+  height: 100vh;
+  width: 290px;
+  background-color: var(--main-color) ;
+  margin-left: 172px;
+}
+
+.timer {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  top: 63px;
+  right: 140px;
+  background-color: #FFFFFF;
+  padding: 22px 18px 22px 22px;
+  border-radius: 25px;
+  z-index: 1;
+}
+
+.time {
+  font-family: HeadingNow;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 100%;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.descriptionBtn {
+  position: fixed;
+  bottom: 79px;
+  right: 140px;
+  background-color: #FFFFFF;
+  padding: 17px 38px 18px 38px;
+  border-radius: 20px;
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 125%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: .12s;
+  transition-timing-function: ease-out;
+  transition-property: bottom;
+
+  &:hover{
+    bottom: 82px;
+    transition: .12s;
+    transition-timing-function: ease-out;
+    transition-property: bottom;
+  }
+}
+
+.header{
+  display: flex;
+  gap: 83px;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.logoWrapper{
+  width: 100px;
+  height: 58px;
+  position: relative;
+}
+
+.languageBtn{
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  padding: 9px 16px 9px 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: .12s;
+  transition-timing-function: ease-out;
+  transition-property: margin-top;
+
+  &:hover{
+    margin-top: 3px;
+    transition: .12s;
+    transition-timing-function: ease-out;
+    transition-property: margin-top;
+  }
+}
+
+.tittle{
+  text-transform: uppercase;
+  font-family: HeadingNow;
+  margin-top: 190px;
+  font-weight: 700;
+  font-size: 65px;
+  line-height: 90%;
+}
+
+.nftBlock{
+  margin-top: 139px;
+  background-color: #FFFFFF;
+  padding: 39px 20px 40px 45px;
+  border-radius: 25px;
+  width: 320px;
+  font-family: Roboto;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: rgba(144, 167, 188, 1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 25px;
+}
+
+.nftAmount{
+  font-family: HeadingNow;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 20px;
+  color: $outstandingColor;
+}
+
+.whitelist{
+  background-color: $outstandingColor;
+  margin-top: 25px;
+  padding: 17px 0;
+  width: 319px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-transform: uppercase;
+  font-family: HeadingNow;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 125%;
+  margin-bottom: 0;
+  transition: .12s;
+  transition-timing-function: ease-out;
+  transition-property: margin-bottom, margin-top;
+}
+
+.whitelist:hover{
+  margin-top: 22px;
+  margin-bottom: 3px;
+  transition: .12s;
+  transition-timing-function: ease-out;
+  transition-property: margin-bottom, margin-top;
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+.btnConnect{
+  display: none;
+}
+
+.btnGet{
+  display: none;
+}
+
+.btnMintClose{
+  //display: none;
+  color:rgba(100, 119, 136, 1);
+  background-color: #E1E6EB;
+  backdrop-filter: blur(25px);
+}
+
+.btnMintOpen{
+  display: none;
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+.heading{
+  padding-top: 135px;
+  text-transform: uppercase;
+  font-family: HeadingNow;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 90%;
+}
+
+.textBlock{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 435px;
+  margin-top: 50px;
+  font-weight: 600;
+  line-height: 25px;
+  letter-spacing: 0;
+}
+
+.footer{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 44px;
+  margin-top: 134px;
+  padding-bottom: 48px;
+}
+
+.infoBlock{
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 15px;
+  letter-spacing: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 3px;
+}
+
+.social{
+  display: flex;
+  gap: 50px;
+}
+
+.link{
+  position: relative;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0;
+}
+
+.underline{
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  background-color: rgba(30, 63, 94, 1);
+  height: 1px;
+  width: 100%;
+}
+
+.planetSvg{
+  width: 27px;
+  height: 27px;
+}
+
+.arrowSvg{
+  width: 11px;
+  height: 10px;
+}
+
+.clockSvg{
+  width: 30px;
+  height: 30px;
+  margin-bottom: -3px;
+}
+
+.questionSvg{
+  width: 25px;
+  height: 25px;
+}
+
+.lockSvg{
+  width: 24px;
+  height: 31px;
+  margin-bottom: 3px;
+}
+
+.discordSvg{
+  width: 28px;
+  height: 20px;
+}
+
+.foxSvg{
+  width: 23px;
+  height: 22px;
+}
+
+@media (max-width: 1250px) {
+
+  .desktop{
+    display: none;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .header{
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .languageBtn{
+    font-size: 14px;
+    padding: 6px 10px 6px 10px;
+    &:hover{
+      margin-top: revert;
+    }
+  }
+
+  .planetSvg{
+    width: 21px;
+    height: 25px;
+  }
+
+  .arrowSvg{
+    width: 7px;
+    height: 6px;
+  }
+
+  .clockSvg{
+    width: 20px;
+    height: 21px;
+  }
+
+  .questionSvg{
+    width: 21px;
+    height: 21px;
+  }
+
+  .lockSvg{
+    width: 19px;
+  }
+
+  .discordSvg{
+    width: 24px;
+    height: 16px;
+  }
+
+  .foxSvg{
+    width: 20px;
+    height: 17px;
+  }
+
+  .logoWrapper{
+    width: 80px;
+    height: 47px;
+  }
+
+  .cubeWrapper {
+    position: relative;
+    width: 280px;
+    height: 309px;
+    left: 0;
+    margin-top: -85px;
+  }
+
+  .line{
+    display: none;
+  }
+
+  .timer {
+    position: relative;
+    top: 0;
+    right: 0;
+    gap: 4px;
+    margin-top: 30px;
+    text-align: right;
+    width: 150px;
+    padding: 14px 14px 14px 14px;
+    border-radius: 17px;
+  }
+
+  .time{
+    font-size: 18px;
+    text-align: right;
+  }
+
+  .descriptionBtn {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    margin-top: 15px;
+    width: 220px;
+    font-size: 15px;
+    border-radius: 16px;
+    padding: 12px 0 12px 0;
+    justify-content: center;
+    gap: 12px;
+
+    &:hover{
+      bottom: revert;
+    }
+  }
+
+  .whitelist{
+    font-size: 20px;
+    gap: 10px;
+  }
+
+  .btnMintOpen, .btnMintClose{
+    font-size: 25px;
+  }
+
+  .textBlock{
+    width: 100%;
+    margin-top: 50px;
+  }
+
+  .tittle{
+    margin-top: 60px;
+    font-size: 47px;
+  }
+
+  .nftBlock{
+    width: 220px;
+    font-size: 15px;
+    gap: 9px;
+    align-items: initial;
+    padding: 20px 20px 20px 36px;
+    border-radius: 16px;
+  }
+
+  .whitelist{
+    margin-top: 15px;
+    width: 220px;
+    height: 60px;
+
+    &:hover{
+      margin-top: 15px;
+      margin-bottom: revert;
+    }
+  }
+
+  .nftAmount{
+    line-height: 16px;
+    font-size: 27px;
+  }
+
+  .heading{
+    margin-top: 85px;
+    font-size: 28px;
+    padding-top: 0;
+  }
+
+  .textBlock{
+    margin-top: 40px;
+    font-size: 14px;
+    gap: 12px;
+  }
+
+  .footer{
+    margin-top: 75px;
+  }
+
+  .link{
+    font-size: 9px;
+  }
+
 }
