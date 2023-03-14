@@ -9,11 +9,14 @@
 
 .cubeWrapper {
   position: fixed;
-  //right: 413px;
   left: 47%;
   top: 0;
   width: 618px;
   height: 681px;
+}
+
+.cubeImg{
+  margin-top: 115px;
 }
 
 .line{
@@ -295,11 +298,138 @@
   height: 22px;
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1260px) {
 
   .desktop{
     display: none;
   }
+
+  .container {
+    margin-left: 40px;
+    width: 300px;
+  }
+
+  .timer {
+    right: 40px;
+  }
+
+  .descriptionBtn {
+    right: 40px;
+  }
+
+  .cubeWrapper {
+    width: 52vw;
+    height: 56vw;
+    min-width: 280px;
+    min-height: 309px;
+    left: 46%;
+  }
+
+  .line{
+    margin-left: 26%;
+    width: 26vw;
+  }
+
+  .cubeImg{
+    margin-top:calc(115px + (1260px - var(--window-width)) / 4 ) ;
+  }
+
+  .tittle{
+    margin-top: 120px;
+    font-size: 47px;
+  }
+
+  .nftBlock{
+    width: 220px;
+    font-size: 15px;
+    gap: 9px;
+    align-items: initial;
+    padding: 20px 20px 20px 36px;
+    border-radius: 16px;
+  }
+
+  .whitelist{
+    margin-top: 15px;
+    width: 220px;
+    height: 60px;
+
+    &:hover{
+      margin-top: 15px;
+      margin-bottom: revert;
+    }
+  }
+
+  .nftAmount{
+    line-height: 16px;
+    font-size: 27px;
+  }
+
+  .btnMintOpen, .btnMintClose{
+    font-size: 25px;
+  }
+
+  .textBlock{
+    width: 100%;
+    margin-top: 50px;
+  }
+
+  .time{
+    font-size: 18px;
+    text-align: right;
+  }
+
+  .clockSvg{
+    width: 20px;
+    height: 21px;
+  }
+
+  .descriptionBtn {
+    margin-top: 15px;
+    width: 220px;
+    font-size: 15px;
+    border-radius: 16px;
+    padding: 12px 0 12px 0;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .heading{
+    margin-top: 85px;
+    font-size: 28px;
+    padding-top: 0;
+  }
+
+  .textBlock{
+    margin-top: 40px;
+    font-size: 16px;
+    gap: 12px;
+  }
+
+  .footer{
+    margin-top: 75px;
+  }
+
+  .link{
+    font-size: 9px;
+  }
+
+  .discordSvg{
+    width: 24px;
+    height: 16px;
+  }
+
+  .foxSvg{
+    width: 20px;
+    height: 17px;
+  }
+
+  .whitelist{
+    font-size: 20px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 700px) {
 
   .container {
     display: flex;
@@ -334,11 +464,6 @@
     height: 6px;
   }
 
-  .clockSvg{
-    width: 20px;
-    height: 21px;
-  }
-
   .questionSvg{
     width: 21px;
     height: 21px;
@@ -346,16 +471,6 @@
 
   .lockSvg{
     width: 19px;
-  }
-
-  .discordSvg{
-    width: 24px;
-    height: 16px;
-  }
-
-  .foxSvg{
-    width: 20px;
-    height: 17px;
   }
 
   .logoWrapper{
@@ -369,6 +484,10 @@
     height: 309px;
     left: 0;
     margin-top: -85px;
+  }
+
+  .cubeImg{
+    margin-top: 115px;
   }
 
   .line{
@@ -387,90 +506,22 @@
     border-radius: 17px;
   }
 
-  .time{
-    font-size: 18px;
-    text-align: right;
-  }
-
   .descriptionBtn {
     position: relative;
     bottom: 0;
     right: 0;
-    margin-top: 15px;
-    width: 220px;
-    font-size: 15px;
-    border-radius: 16px;
-    padding: 12px 0 12px 0;
-    justify-content: center;
-    gap: 12px;
 
     &:hover{
       bottom: revert;
     }
   }
 
-  .whitelist{
-    font-size: 20px;
-    gap: 10px;
-  }
-
-  .btnMintOpen, .btnMintClose{
-    font-size: 25px;
-  }
-
-  .textBlock{
-    width: 100%;
-    margin-top: 50px;
-  }
-
   .tittle{
     margin-top: 60px;
-    font-size: 47px;
-  }
-
-  .nftBlock{
-    width: 220px;
-    font-size: 15px;
-    gap: 9px;
-    align-items: initial;
-    padding: 20px 20px 20px 36px;
-    border-radius: 16px;
-  }
-
-  .whitelist{
-    margin-top: 15px;
-    width: 220px;
-    height: 60px;
-
-    &:hover{
-      margin-top: 15px;
-      margin-bottom: revert;
-    }
-  }
-
-  .nftAmount{
-    line-height: 16px;
-    font-size: 27px;
-  }
-
-  .heading{
-    margin-top: 85px;
-    font-size: 28px;
-    padding-top: 0;
   }
 
   .textBlock{
-    margin-top: 40px;
     font-size: 14px;
-    gap: 12px;
-  }
-
-  .footer{
-    margin-top: 75px;
-  }
-
-  .link{
-    font-size: 9px;
   }
 
 }

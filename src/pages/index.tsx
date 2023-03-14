@@ -78,6 +78,14 @@ export default function Home() {
     setReferralModalOpen(false);
   };
 
+  function windowWidth() {
+    const number = `${document.documentElement.clientWidth}px`;
+    document.documentElement.style.setProperty('--window-width', number);
+  }
+
+  windowWidth();
+  window.onresize = windowWidth;
+
   return (
     <>
       <Head>
@@ -123,10 +131,11 @@ export default function Home() {
           </div>
           <div className={s.cubeWrapper}>
             <Image
-                src="/images/cube.png"
+                src="/images/cube.gif"
                 fill
                 alt=""
-                style={{ objectFit: "cover",  marginTop: "115px"}}
+                style={{ objectFit: "cover"}}
+                className={s.cubeImg}
             />
             <div className={s.line}/></div>
           <div className={s.nftBlock}>
