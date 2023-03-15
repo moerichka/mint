@@ -61,8 +61,6 @@ $mobile: 420px;
       box-shadow: none;
     }
 
-
-
     .close {
       position: absolute;
       right: 23px;
@@ -71,6 +69,27 @@ $mobile: 420px;
       color: hsla(0, 0%, 100%, 0.5);
       background-color: transparent;
       font-size: 18px;
+
+      .iconClose {
+        position: relative;
+        width: 20px;
+        height: 20px;
+
+        .line {
+          position: absolute;
+          display: block;
+          background-color: hsla(0, 0%, 100%, 0.5);
+          height: 2px;
+          width: 120%;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%) rotate(45deg);
+
+          &:nth-child(2) {
+            transform: translate(-50%, -50%) rotate(-45deg);
+          }
+        }
+      }
 
       @media (max-width: $tablet) {
         font-size: 16px;
@@ -108,7 +127,7 @@ $mobile: 420px;
       //}
     }
 
-    .textBlock{
+    .textBlock {
       display: flex;
       flex-direction: column;
       gap: 23px;
@@ -183,9 +202,5 @@ $mobile: 420px;
         margin-left: auto;
       }
     }
-
   }
 }
-
-
-

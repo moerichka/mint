@@ -120,8 +120,8 @@ h6 {
   opacity: 0;
 }
 
-$primary-color: var(--dark-blue);
-// @import "loaders.css/src/animations/line-scale-pulse-out-rapid.scss";
+$primary-color: white;
+@import "loaders.css/src/animations/line-scale-pulse-out-rapid.scss";
 
 .loader-hidden {
   display: none;

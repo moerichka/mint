@@ -162,28 +162,22 @@
   font-size: 30px;
   line-height: 125%;
   margin-bottom: 0;
-  transition: .12s;
-  transition-timing-function: ease-out;
-  transition-property: margin-bottom, margin-top;
-}
+  transition: .3s;
 
-.whitelist:hover{
-  margin-top: 22px;
-  margin-bottom: 3px;
-  transition: .12s;
-  transition-timing-function: ease-out;
-  transition-property: margin-bottom, margin-top;
+  &:hover{
+    transform: translateY(-3px);
+  }
 }
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-.btnConnect{
-  display: none;
-}
+// .btnConnect{
+//   display: none;
+// }
 
-.btnGet{
-  display: none;
-}
+// .btnGet{
+//   display: none;
+// }
 
 .btnMintClose{
   //display: none;
@@ -298,6 +292,13 @@
   height: 22px;
 }
 
+.loaderWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (max-width: 1260px) {
 
   .desktop{
@@ -354,8 +355,7 @@
     height: 60px;
 
     &:hover{
-      margin-top: 15px;
-      margin-bottom: revert;
+      transform: translateY(-10px);
     }
   }
 

@@ -37,7 +37,10 @@ function ReferralAccessModal({ open, close }: Props) {
             <div className={s.summery}>
               <div className={s.title}>HOW IT WORKS?</div>
               <button type="button" className={s.close} onClick={onClose}>
-                <span className="icon-close" />
+                <div className={s.iconClose}>
+                  <span className={s.line} />
+                  <span className={s.line} />
+                </div>
               </button>
             </div>
           </div>
@@ -45,13 +48,15 @@ function ReferralAccessModal({ open, close }: Props) {
             <div className={s.title}>Referral request form</div>
             <div className={s.textBlock}>
               <p>
-                The Trace referral system is designed for influencers around the world. Bring value and get rewarded!
-                <br/>
+                The Trace referral system is designed for influencers around the
+                world. Bring value and get rewarded!
+                <br />
                 Apply by telling us about yourself and your amazing experience:
               </p>
               <p>
-                The Trace referral system is designed for influencers around the world. Bring value and get rewarded!
-                <br/>
+                The Trace referral system is designed for influencers around the
+                world. Bring value and get rewarded!
+                <br />
                 Apply by telling us about yourself and your amazing experience:
               </p>
             </div>
