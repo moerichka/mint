@@ -11,7 +11,6 @@ import ReferralAccessModal from "components/Modal/ReferralAccessModal";
 import salesAbi from "assets/sales-abi.json";
 import nftAbi from "assets/nft-abi.json";
 import {inspect} from "util";
-import colors = module
 
 const SALES_CONTRACT_ADDRESS = "0x7ba75866bF445b476b1004D0e41BD1749E0cb1CF";
 const NFT_CONTRACT_ADDRESS = "0x25bf876880A40b77F51F878470C9Ca1c67F7fd4a";
