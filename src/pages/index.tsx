@@ -6,6 +6,7 @@ import { useAccount, useContract, useSigner, useSignMessage } from "wagmi";
 import { useWeb3Modal } from "@web3modal/react";
 
 import ReferralAccessModal from "components/Modal/ReferralAccessModal";
+import Timer from "components/Timer";
 import Loader from "react-loaders";
 
 import salesAbi from "assets/sales-abi.json";
@@ -156,21 +157,7 @@ export default function Home() {
             UPCOMING FREE MINT NFT pass
             <span style={{ color: "rgba(255, 165, 59, 1)" }}> metatRACE</span>
           </h1>
-          <div className={s.timer}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={s.clockSvg}
-              fill="none"
-              viewBox="0 0 30 30"
-            >
-              <path
-                fill="#FFA53B"
-                stroke="#FFA53B"
-                d="M12 1v5a1 1 0 1 0 2 0V3.201c5.038.523 9 4.62 9 9.799 0 5.535-4.465 10-10 10S3 18.535 3 13c0-2.454.882-4.687 2.346-6.426a1 1 0 1 0-1.532-1.289A11.95 11.95 0 0 0 1 13c0 6.616 5.385 12 12 12 6.616 0 12-5.384 12-12 0-6.615-5.384-12-12-12h-1ZM7.395 7.008c-.293.043-.512.386-.317.691 1.464 2.297 3.964 6.171 4.508 6.715a2 2 0 1 0 2.828-2.828C13.87 11.04 9.996 8.542 7.7 7.078a.44.44 0 0 0-.304-.07Z"
-              />
-            </svg>
-            <span className={s.time}>12d : 16h : 45m</span>
-          </div>
+          <Timer />
           <div className={s.cubeWrapper}>
             <Image
               src="/images/cube.gif"

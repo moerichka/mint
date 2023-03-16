@@ -26,28 +26,6 @@
   margin-left: 172px;
 }
 
-.timer {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  top: 63px;
-  right: 140px;
-  background-color: #FFFFFF;
-  padding: 22px 18px 22px 22px;
-  border-radius: 25px;
-  z-index: 1;
-}
-
-.time {
-  font-family: HeadingNow;
-  font-weight: 700;
-  font-size: 30px;
-  line-height: 100%;
-  text-transform: uppercase;
-  letter-spacing: 0;
-}
-
 .descriptionBtn {
   position: fixed;
   bottom: 79px;
@@ -265,12 +243,6 @@
   height: 10px;
 }
 
-.clockSvg{
-  width: 30px;
-  height: 30px;
-  margin-bottom: -3px;
-}
-
 .questionSvg{
   width: 25px;
   height: 25px;
@@ -310,9 +282,6 @@
     width: 300px;
   }
 
-  .timer {
-    right: 40px;
-  }
 
   .descriptionBtn {
     right: 40px;
@@ -371,16 +340,6 @@
   .textBlock{
     width: 100%;
     margin-top: 50px;
-  }
-
-  .time{
-    font-size: 18px;
-    text-align: right;
-  }
-
-  .clockSvg{
-    width: 20px;
-    height: 21px;
   }
 
   .descriptionBtn {
@@ -492,18 +451,6 @@
 
   .line{
     display: none;
-  }
-
-  .timer {
-    position: relative;
-    top: 0;
-    right: 0;
-    gap: 4px;
-    margin-top: 30px;
-    text-align: right;
-    width: 150px;
-    padding: 14px 14px 14px 14px;
-    border-radius: 17px;
   }
 
   .descriptionBtn {
