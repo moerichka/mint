@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Head from "next/head";
+import { enqueueSnackbar } from "notistack";
 import { ethers } from "ethers";
 import { useAccount, useContract, useSigner, useSignMessage } from "wagmi";
 import { useWeb3Modal } from "@web3modal/react";
@@ -29,6 +30,7 @@ export default function Home() {
   const [isWhiteListed, setIsWhiteListed] = useState<boolean>(false);
   const [isWhiteListLoading, setIsWhiteListedLoading] =
     useState<boolean>(false);
+  const [isServerAnswered, setIsServerAnswered] = useState<boolean>(false);
 
   const { open } = useWeb3Modal();
   const { data: signer } = useSigner();
@@ -53,6 +55,10 @@ export default function Home() {
     const response = await nftContactInstance?.balanceOf(address);
     return response?.toString(); // строка "0", либо "1", "2"
   };
+
+  // useEffect(() => {
+  //   getNFTCount();
+  // }, []);
 
   const generateSignature = async () => {
     if (address === undefined) throw new Error("Address does not exist");
@@ -79,8 +85,17 @@ export default function Home() {
   };
 
   const handleMint = async () => {
-    if (IS_WHITELISTED) purchaseTokenWhitelisted().then();
-    else purchaseToken().then();
+    try {
+      if (isWhiteListed) purchaseTokenWhitelisted().then();
+      else purchaseToken().then();
+    } catch (error: any) {
+      enqueueSnackbar({
+        variant: "trace",
+        customTitle: "Error",
+        customMessage: error?.message,
+        type: "error",
+      });
+    }
   };
 
   const closeReferralModal = () => {
@@ -102,11 +117,27 @@ export default function Home() {
       }
       const data = await response.json();
       if (data.result) {
-        setIsWhiteListed(true);
+        setIsWhiteListed(data.result);
+        enqueueSnackbar({
+          variant: "trace",
+          customTitle: "Server response",
+          customMessage: "You are in whitelist",
+        });
+      } else {
+        enqueueSnackbar({
+          variant: "trace",
+          customTitle: "Server response",
+          customMessage: "You are not in whitelist",
+        });
       }
-      console.log(data);
-    } catch (error) {
-      console.log("error: ", error);
+      setIsServerAnswered(true);
+    } catch (error: any) {
+      enqueueSnackbar({
+        variant: "trace",
+        customTitle: "Error",
+        customMessage: error?.message,
+        type: "error",
+      });
     } finally {
       setIsWhiteListedLoading(false);
     }
@@ -173,52 +204,56 @@ export default function Home() {
             <span className={s.nftAmount}>3000 NFT</span>
           </div>
 
-          <button
-            className={s.whitelist + " " + s.btnConnect}
-            onClick={() => open()}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={s.foxSvg}
-              fill="none"
-              viewBox="0 0 23 22"
+          {!address && (
+            <button
+              className={s.whitelist + " " + s.btnConnect}
+              onClick={() => open()}
             >
-              <path
-                fill="#fff"
-                d="m2.015.992 7.981 6.522-2.992 2.989-4.98 1.493L.487 15.5l7.518.012-.475 4.497 2.016 1.503h3.95l2.003-1.503-.486-4.506 7.494-.009-1.494-3.463-5.065-1.533-2.933-2.984 7.98-6.522-7.014 2.514H8.953L2.015.992Zm19.497.867-6.867 5.637 1.851 2.11 4.488 1.382 1.506-6.006-.978-3.123ZM1.52 1.871.523 5.023l1.489 5.965L6.46 9.611l1.892-2.115L1.52 1.871ZM9 13l1 1.5-2.521-.482L9 13Zm5 0 1.512 1.018L13 14.5l1-1.5ZM.5 16.496l1.512 4.518 4.476-1.005.404-3.488L.5 16.497Zm15.615.009.393 3.504 4.47 1.005 1.512-4.5-6.375-.01ZM10.403 17h2.176l.421.5.016 1.51-3.024-.018L10 17.5l.403-.5Z"
-              />
-            </svg>
-            <span>connect wallet</span>
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={s.foxSvg}
+                fill="none"
+                viewBox="0 0 23 22"
+              >
+                <path
+                  fill="#fff"
+                  d="m2.015.992 7.981 6.522-2.992 2.989-4.98 1.493L.487 15.5l7.518.012-.475 4.497 2.016 1.503h3.95l2.003-1.503-.486-4.506 7.494-.009-1.494-3.463-5.065-1.533-2.933-2.984 7.98-6.522-7.014 2.514H8.953L2.015.992Zm19.497.867-6.867 5.637 1.851 2.11 4.488 1.382 1.506-6.006-.978-3.123ZM1.52 1.871.523 5.023l1.489 5.965L6.46 9.611l1.892-2.115L1.52 1.871ZM9 13l1 1.5-2.521-.482L9 13Zm5 0 1.512 1.018L13 14.5l1-1.5ZM.5 16.496l1.512 4.518 4.476-1.005.404-3.488L.5 16.497Zm15.615.009.393 3.504 4.47 1.005 1.512-4.5-6.375-.01ZM10.403 17h2.176l.421.5.016 1.51-3.024-.018L10 17.5l.403-.5Z"
+                />
+              </svg>
+              <span>connect wallet</span>
+            </button>
+          )}
 
-          <button
-            className={s.whitelist + " " + s.btnGet}
-            onClick={checkWhiteList}
-          >
-            {!isWhiteListLoading && (
-              <>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={s.discordSvg}
-                  fill="none"
-                  viewBox="0 0 28 20"
-                >
-                  <path
-                    fill="#fff"
-                    d="M24.067 2.533C22.177.933 19.91.133 17.515 0l-.378.4c2.142.533 4.032 1.6 5.796 3.067A18.42 18.42 0 0 0 15.877 1.2c-.756-.133-1.386-.133-2.142-.133s-1.386 0-2.142.133a18.42 18.42 0 0 0-7.057 2.267C6.3 2 8.19.933 10.332.4L9.954 0C7.56.133 5.292.933 3.402 2.533 1.26 6.8.126 11.6 0 16.533 1.89 18.667 4.536 20 7.308 20c0 0 .882-1.067 1.512-2-1.638-.4-3.15-1.333-4.158-2.8.882.533 1.764 1.067 2.646 1.467 1.134.533 2.268.8 3.402 1.066 1.009.134 2.017.267 3.025.267s2.016-.133 3.024-.267c1.134-.266 2.268-.533 3.402-1.066.882-.4 1.764-.934 2.646-1.467-1.008 1.467-2.52 2.4-4.158 2.8.63.933 1.512 2 1.512 2 2.772 0 5.418-1.333 7.308-3.467-.126-4.933-1.26-9.733-3.402-14Zm-14.49 11.6c-1.26 0-2.395-1.2-2.395-2.666C7.182 10 8.316 8.8 9.576 8.8c1.26 0 2.395 1.2 2.395 2.667 0 1.466-1.135 2.666-2.395 2.666Zm8.316 0c-1.26 0-2.394-1.2-2.394-2.666 0-1.467 1.134-2.667 2.394-2.667 1.26 0 2.394 1.2 2.394 2.667 0 1.466-1.134 2.666-2.394 2.666Z"
-                  />
-                </svg>
-                <span>Get whitelist</span>
-              </>
-            )}
-            {isWhiteListLoading && (
-              <div className={s.loaderWrapper}>
-                <Loader type="line-scale-pulse-out-rapid" active />
-              </div>
-            )}
-          </button>
+          {!isServerAnswered && address && (
+            <button
+              className={s.whitelist + " " + s.btnGet}
+              onClick={checkWhiteList}
+            >
+              {!isWhiteListLoading && (
+                <>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={s.discordSvg}
+                    fill="none"
+                    viewBox="0 0 28 20"
+                  >
+                    <path
+                      fill="#fff"
+                      d="M24.067 2.533C22.177.933 19.91.133 17.515 0l-.378.4c2.142.533 4.032 1.6 5.796 3.067A18.42 18.42 0 0 0 15.877 1.2c-.756-.133-1.386-.133-2.142-.133s-1.386 0-2.142.133a18.42 18.42 0 0 0-7.057 2.267C6.3 2 8.19.933 10.332.4L9.954 0C7.56.133 5.292.933 3.402 2.533 1.26 6.8.126 11.6 0 16.533 1.89 18.667 4.536 20 7.308 20c0 0 .882-1.067 1.512-2-1.638-.4-3.15-1.333-4.158-2.8.882.533 1.764 1.067 2.646 1.467 1.134.533 2.268.8 3.402 1.066 1.009.134 2.017.267 3.025.267s2.016-.133 3.024-.267c1.134-.266 2.268-.533 3.402-1.066.882-.4 1.764-.934 2.646-1.467-1.008 1.467-2.52 2.4-4.158 2.8.63.933 1.512 2 1.512 2 2.772 0 5.418-1.333 7.308-3.467-.126-4.933-1.26-9.733-3.402-14Zm-14.49 11.6c-1.26 0-2.395-1.2-2.395-2.666C7.182 10 8.316 8.8 9.576 8.8c1.26 0 2.395 1.2 2.395 2.667 0 1.466-1.135 2.666-2.395 2.666Zm8.316 0c-1.26 0-2.394-1.2-2.394-2.666 0-1.467 1.134-2.667 2.394-2.667 1.26 0 2.394 1.2 2.394 2.667 0 1.466-1.134 2.666-2.394 2.666Z"
+                    />
+                  </svg>
+                  <span>Get whitelist</span>
+                </>
+              )}
+              {isWhiteListLoading && (
+                <div className={s.loaderWrapper}>
+                  <Loader type="line-scale-pulse-out-rapid" active />
+                </div>
+              )}
+            </button>
+          )}
 
-          <button className={s.whitelist + " " + s.btnMintClose}>
+          {/* <button className={s.whitelist + " " + s.btnMintClose}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className={s.lockSvg}
@@ -232,14 +267,16 @@ export default function Home() {
               />
             </svg>
             <span>Mint</span>
-          </button>
+          </button> */}
 
-          <button
-            className={s.whitelist + " " + s.btnMintOpen}
-            onClick={handleMint}
-          >
-            <span>Mint</span>
-          </button>
+          {isServerAnswered && (
+            <button
+              className={s.whitelist + " " + s.btnMintOpen}
+              onClick={handleMint}
+            >
+              <span>Mint</span>
+            </button>
+          )}
 
           <button
             className={s.descriptionBtn}

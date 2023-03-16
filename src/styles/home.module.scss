@@ -1,6 +1,5 @@
 @import "~/src/styles/variables";
 
-
 .container {
   margin-left: 140px;
   margin-top: 63px;
@@ -15,14 +14,14 @@
   height: 681px;
 }
 
-.cubeImg{
+.cubeImg {
   margin-top: 115px;
 }
 
-.line{
+.line {
   height: 100vh;
   width: 290px;
-  background-color: var(--main-color) ;
+  background-color: var(--main-color);
   margin-left: 172px;
 }
 
@@ -30,7 +29,7 @@
   position: fixed;
   bottom: 79px;
   right: 140px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding: 17px 38px 18px 38px;
   border-radius: 20px;
   font-family: Roboto;
@@ -40,54 +39,54 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  transition: .12s;
+  transition: 0.12s;
   transition-timing-function: ease-out;
   transition-property: bottom;
 
-  &:hover{
+  &:hover {
     bottom: 82px;
-    transition: .12s;
+    transition: 0.12s;
     transition-timing-function: ease-out;
     transition-property: bottom;
   }
 }
 
-.header{
+.header {
   display: flex;
   gap: 83px;
   justify-content: flex-start;
   align-items: flex-start;
 }
 
-.logoWrapper{
+.logoWrapper {
   width: 100px;
   height: 58px;
   position: relative;
 }
 
-.languageBtn{
+.languageBtn {
   text-transform: uppercase;
   font-weight: 800;
   font-size: 16px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding: 9px 16px 9px 16px;
   border-radius: 16px;
   display: flex;
   align-items: center;
   gap: 4px;
-  transition: .12s;
+  transition: 0.12s;
   transition-timing-function: ease-out;
   transition-property: margin-top;
 
-  &:hover{
+  &:hover {
     margin-top: 3px;
-    transition: .12s;
+    transition: 0.12s;
     transition-timing-function: ease-out;
     transition-property: margin-top;
   }
 }
 
-.tittle{
+.tittle {
   text-transform: uppercase;
   font-family: HeadingNow;
   margin-top: 190px;
@@ -96,9 +95,9 @@
   line-height: 90%;
 }
 
-.nftBlock{
+.nftBlock {
   margin-top: 139px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding: 39px 20px 40px 45px;
   border-radius: 25px;
   width: 320px;
@@ -114,7 +113,7 @@
   gap: 25px;
 }
 
-.nftAmount{
+.nftAmount {
   font-family: HeadingNow;
   font-style: normal;
   font-weight: 700;
@@ -123,7 +122,7 @@
   color: $outstandingColor;
 }
 
-.whitelist{
+.whitelist {
   background-color: $outstandingColor;
   margin-top: 25px;
   padding: 17px 0;
@@ -135,15 +134,17 @@
   gap: 16px;
   text-transform: uppercase;
   font-family: HeadingNow;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 700;
   font-size: 30px;
   line-height: 125%;
   margin-bottom: 0;
-  transition: .3s;
+  transition: 0.3s;
 
-  &:hover{
-    transform: translateY(-3px);
+  @media (min-width: 800px) {
+    &:hover {
+      transform: translateY(-3px);
+    }
   }
 }
 
@@ -157,10 +158,10 @@
 //   display: none;
 // }
 
-.btnMintClose{
+.btnMintClose {
   //display: none;
-  color:rgba(100, 119, 136, 1);
-  background-color: #E1E6EB;
+  color: rgba(100, 119, 136, 1);
+  background-color: #e1e6eb;
   backdrop-filter: blur(25px);
 }
 
@@ -170,7 +171,7 @@
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-.heading{
+.heading {
   padding-top: 135px;
   text-transform: uppercase;
   font-family: HeadingNow;
@@ -179,7 +180,7 @@
   line-height: 90%;
 }
 
-.textBlock{
+.textBlock {
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -190,7 +191,7 @@
   letter-spacing: 0;
 }
 
-.footer{
+.footer {
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
@@ -199,7 +200,7 @@
   padding-bottom: 48px;
 }
 
-.infoBlock{
+.infoBlock {
   font-size: 11px;
   font-weight: 600;
   line-height: 15px;
@@ -210,12 +211,12 @@
   margin-bottom: 3px;
 }
 
-.social{
+.social {
   display: flex;
   gap: 50px;
 }
 
-.link{
+.link {
   position: relative;
   font-family: Roboto;
   font-size: 12px;
@@ -224,7 +225,7 @@
   letter-spacing: 0;
 }
 
-.underline{
+.underline {
   position: absolute;
   bottom: 1px;
   left: 0;
@@ -233,33 +234,33 @@
   width: 100%;
 }
 
-.planetSvg{
+.planetSvg {
   width: 27px;
   height: 27px;
 }
 
-.arrowSvg{
+.arrowSvg {
   width: 11px;
   height: 10px;
 }
 
-.questionSvg{
+.questionSvg {
   width: 25px;
   height: 25px;
 }
 
-.lockSvg{
+.lockSvg {
   width: 24px;
   height: 31px;
   margin-bottom: 3px;
 }
 
-.discordSvg{
+.discordSvg {
   width: 28px;
   height: 20px;
 }
 
-.foxSvg{
+.foxSvg {
   width: 23px;
   height: 22px;
 }
@@ -272,8 +273,7 @@
 }
 
 @media (max-width: 1260px) {
-
-  .desktop{
+  .desktop {
     display: none;
   }
 
@@ -281,7 +281,6 @@
     margin-left: 40px;
     width: 300px;
   }
-
 
   .descriptionBtn {
     right: 40px;
@@ -295,21 +294,21 @@
     left: 46%;
   }
 
-  .line{
+  .line {
     margin-left: 26%;
     width: 26vw;
   }
 
-  .cubeImg{
-    margin-top:calc(115px + (1260px - var(--window-width)) / 4 ) ;
+  .cubeImg {
+    margin-top: calc(115px + (1260px - var(--window-width)) / 4);
   }
 
-  .tittle{
+  .tittle {
     margin-top: 120px;
     font-size: 47px;
   }
 
-  .nftBlock{
+  .nftBlock {
     width: 220px;
     font-size: 15px;
     gap: 9px;
@@ -318,26 +317,23 @@
     border-radius: 16px;
   }
 
-  .whitelist{
+  .whitelist {
     margin-top: 15px;
     width: 220px;
     height: 60px;
-
-    &:hover{
-      transform: translateY(-10px);
-    }
   }
 
-  .nftAmount{
+  .nftAmount {
     line-height: 16px;
     font-size: 27px;
   }
 
-  .btnMintOpen, .btnMintClose{
+  .btnMintOpen,
+  .btnMintClose {
     font-size: 25px;
   }
 
-  .textBlock{
+  .textBlock {
     width: 100%;
     margin-top: 50px;
   }
@@ -352,44 +348,43 @@
     gap: 12px;
   }
 
-  .heading{
+  .heading {
     margin-top: 85px;
     font-size: 28px;
     padding-top: 0;
   }
 
-  .textBlock{
+  .textBlock {
     margin-top: 40px;
     font-size: 16px;
     gap: 12px;
   }
 
-  .footer{
+  .footer {
     margin-top: 75px;
   }
 
-  .link{
+  .link {
     font-size: 9px;
   }
 
-  .discordSvg{
+  .discordSvg {
     width: 24px;
     height: 16px;
   }
 
-  .foxSvg{
+  .foxSvg {
     width: 20px;
     height: 17px;
   }
 
-  .whitelist{
+  .whitelist {
     font-size: 20px;
     gap: 10px;
   }
 }
 
 @media (max-width: 700px) {
-
   .container {
     display: flex;
     flex-direction: column;
@@ -400,39 +395,39 @@
     margin-right: auto;
   }
 
-  .header{
+  .header {
     width: 100%;
     justify-content: space-between;
   }
 
-  .languageBtn{
+  .languageBtn {
     font-size: 14px;
     padding: 6px 10px 6px 10px;
-    &:hover{
+    &:hover {
       margin-top: revert;
     }
   }
 
-  .planetSvg{
+  .planetSvg {
     width: 21px;
     height: 25px;
   }
 
-  .arrowSvg{
+  .arrowSvg {
     width: 7px;
     height: 6px;
   }
 
-  .questionSvg{
+  .questionSvg {
     width: 21px;
     height: 21px;
   }
 
-  .lockSvg{
+  .lockSvg {
     width: 19px;
   }
 
-  .logoWrapper{
+  .logoWrapper {
     width: 80px;
     height: 47px;
   }
@@ -445,11 +440,11 @@
     margin-top: -85px;
   }
 
-  .cubeImg{
+  .cubeImg {
     margin-top: 115px;
   }
 
-  .line{
+  .line {
     display: none;
   }
 
@@ -458,17 +453,16 @@
     bottom: 0;
     right: 0;
 
-    &:hover{
+    &:hover {
       bottom: revert;
     }
   }
 
-  .tittle{
+  .tittle {
     margin-top: 60px;
   }
 
-  .textBlock{
+  .textBlock {
     font-size: 14px;
   }
-
 }

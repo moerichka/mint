@@ -1,0 +1,74 @@
+@import "~/src/styles/functions";
+
+.snackBar {
+  position: relative;
+  padding: rem(24px) rem(30px) rem(24px) rem(34px);
+  border-radius: rem(30px);
+  width: rem(334px);
+  max-width: 100%;
+  background-color: white;
+  color: hsla(220, 18%, 51%, 1);
+
+  &.error {
+    background-color: hsla(0, 100%, 70%, 1);
+    color: hsla(220, 23%, 97%, 1);
+
+    .closeButton {
+      color: hsla(0, 0%, 100%, 0.5);
+    }
+  }
+
+  @media (max-width: rem(480px)) {
+    padding: rem(16px) rem(50px) rem(14px) rem(26px);
+    width: rem(263px);
+    box-shadow: rem(0px) rem(5px) rem(10px) rgba(0, 0, 0, 0.25),
+      0px 2.26364px 3.77273px rgba(49, 62, 72, 0.03);
+    border-radius: 22px;
+
+    .closeButton {
+      top: rem(12px);
+      right: rem(12px);
+    }
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: rem(10px);
+
+  .title {
+    font-family: HeadingNow;
+    font-size: rem(18px);
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: rem(5px);
+
+    @media (max-width: rem(480px)) {
+      font-size: rem(11px);
+    }
+  }
+
+  .message {
+    font-family: Manrope;
+    font-weight: 600;
+    font-size: rem(15px);
+    line-height: 125%;
+
+    @media (max-width: rem(480px)) {
+      font-size: rem(12px);
+    }
+  }
+}
+
+.closeButton {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  color: hsla(220, 18%, 51%, 0.5);
+  font-size: rem(12px);
+  top: rem(25px);
+  right: rem(21px);
+}
