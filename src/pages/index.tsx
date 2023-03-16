@@ -56,10 +56,6 @@ export default function Home() {
     return response?.toString(); // строка "0", либо "1", "2"
   };
 
-  // useEffect(() => {
-  //   getNFTCount();
-  // }, []);
-
   const generateSignature = async () => {
     if (address === undefined) throw new Error("Address does not exist");
     const message = ethers.utils.keccak256(ethers.utils.arrayify(address));
@@ -72,6 +68,11 @@ export default function Home() {
   const purchaseToken = async () => {
     const { wait } = await salesContractInstance?.purchaseToken();
     await wait(CONFIRMATIONS_COUNT);
+    enqueueSnackbar({
+      variant: "trace",
+      customTitle: "Congratulations!",
+      customMessage: "NFT has been minted",
+    });
   };
 
   const purchaseTokenWhitelisted = async () => {
@@ -82,6 +83,11 @@ export default function Home() {
       v
     );
     await wait(CONFIRMATIONS_COUNT);
+    enqueueSnackbar({
+      variant: "trace",
+      customTitle: "Congratulations!",
+      customMessage: "NFT has been minted",
+    });
   };
 
   const handleMint = async () => {
