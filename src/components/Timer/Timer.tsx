@@ -2,38 +2,42 @@ import React, { useEffect, useState } from "react";
 
 import s from "./Timer.module.scss";
 
-function Timer() {
-  const [timeLeft, setTimeLeft] = useState({
+const endDate = new Date("Mar 20, 2023 00:00:00").getTime();
+
+const getLeftTime = () => {
+  const now = new Date().getTime();
+  const t = endDate - now;
+
+  if (t >= 0) {
+    const days = Math.floor(t / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+    // const secs = Math.floor((t % (1000 * 60)) / 1000);
+
+    return {
+      days,
+      hours,
+      mins,
+    };
+  }
+  return {
     days: 0,
     hours: 0,
     mins: 0,
-  });
-  const endDate = new Date("Mar 20, 2023 00:00:00").getTime();
+  };
+};
+
+function Timer() {
+  const [timeLeft, setTimeLeft] = useState(getLeftTime());
 
   useEffect(() => {
     const timerInterval = setInterval(() => {
-      const now = new Date().getTime();
-      const t = endDate - now;
-
-      if (t >= 0) {
-        const days = Math.floor(t / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        const mins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-        // const secs = Math.floor((t % (1000 * 60)) / 1000);
-
-        setTimeLeft({
-          days,
-          hours,
-          mins,
-        });
-      }
+      setTimeLeft(getLeftTime());
     }, 10000);
     return () => {
       clearInterval(timerInterval);
     };
-  }, [endDate]);
+  }, []);
 
   return (
     <div className={s.timer}>
