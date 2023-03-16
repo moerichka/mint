@@ -234,7 +234,10 @@ export default function Home() {
             <span>Mint</span>
           </button>
 
-          <button className={s.whitelist + " " + s.btnMintOpen}>
+          <button
+            className={s.whitelist + " " + s.btnMintOpen}
+            onClick={handleMint}
+          >
             <span>Mint</span>
           </button>
 
