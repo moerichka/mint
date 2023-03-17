@@ -4,14 +4,14 @@ import useCloseModal from "hooks/modal/useCloseModal";
 
 import ModalContainer from "../ModalContainer";
 
-import s from "./ReferralAccessModal.module.scss";
+import s from "./ExplanationModal.module.scss";
 
 interface Props {
   open: boolean;
   close: () => void;
 }
 
-function ReferralAccessModal({ open, close }: Props) {
+function ExplanationModal({ open, close }: Props) {
   const { isClosing, onClose } = useCloseModal(close);
   const [userInfo, setUserInfo] = useState("");
 
@@ -45,19 +45,16 @@ function ReferralAccessModal({ open, close }: Props) {
             </div>
           </div>
           <div className={s.content}>
-            <div className={s.title}>Referral request form</div>
+            <div className={s.title}>Free mint for first presale holders!</div>
             <div className={s.textBlock}>
               <p>
-                The Trace referral system is designed for influencers around the
-                world. Bring value and get rewarded!
-                <br />
-                Apply by telling us about yourself and your amazing experience:
+                To mint NFT Pass, link your MetaMask wallet. Please note that
+                you will need a small amount of MATIC to pay for gas fees.
               </p>
               <p>
-                The Trace referral system is designed for influencers around the
-                world. Bring value and get rewarded!
-                <br />
-                Apply by telling us about yourself and your amazing experience:
+                After the mint process, an NFT Pass with a unique ID will be
+                sent to your wallet. It will grant you access to all activities
+                and events in the MetaTrace!
               </p>
             </div>
           </div>
@@ -67,4 +64,4 @@ function ReferralAccessModal({ open, close }: Props) {
   );
 }
 
-export default ReferralAccessModal;
+export default ExplanationModal;

@@ -1,0 +1,207 @@
+$tablet: 770px;
+$mobile: 420px;
+
+.modalWindowWrapper {
+  padding: 0 20px;
+  width: 727px;
+  max-width: 100%;
+
+  @media (max-width: $tablet) {
+    padding: 0 10px;
+  }
+  @media (max-width: $mobile) {
+    padding: 0;
+  }
+}
+
+.modalWindow {
+  width: 100%;
+  background-color: hsla(220, 23%, 97%, 1);
+  border-radius: 30px;
+  overflow: hidden;
+  user-select: none;
+
+  @media (max-width: $mobile) {
+    border-radius: 30px 30px 0 0;
+    background-color: white;
+  }
+
+  .summeryWrapper {
+    padding: 10px 10px 0 10px;
+
+    @media (max-width: $tablet) {
+      padding: 5px 5px 0 5px;
+    }
+
+    @media (max-width: $mobile) {
+      margin-top: 28px;
+    }
+  }
+
+  .summery {
+    position: relative;
+    background-color: var(--main-color);
+    color: white;
+    padding: 0 35px;
+    border-radius: 25px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05),
+      0px 5px 24px rgba(255, 165, 59, 0.5);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 88px;
+
+    //@media (max-width: $tablet) {
+    //  padding: 0 14px;
+    //  min-height: 75px;
+    //}
+    @media (max-width: $mobile) {
+      background-color: white;
+      color: var(--main-color);
+      box-shadow: none;
+      min-height: 58px;
+    }
+
+    .close {
+      position: absolute;
+      right: 23px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: hsla(0, 0%, 100%, 0.5);
+      background-color: transparent;
+      font-size: 18px;
+
+      .iconClose {
+        position: relative;
+        width: 20px;
+        height: 20px;
+
+        .line {
+          position: absolute;
+          display: block;
+          background-color: hsla(0, 0%, 100%, 0.5);
+          height: 2px;
+          width: 120%;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%) rotate(45deg);
+
+          &:nth-child(2) {
+            transform: translate(-50%, -50%) rotate(-45deg);
+          }
+        }
+      }
+
+      @media (max-width: $tablet) {
+        font-size: 16px;
+      }
+    }
+
+    .title {
+      font-family: HeadingNow;
+      font-size: 30px;
+      max-width: 90%;
+      text-transform: uppercase;
+
+      //@media (max-width: $tablet) {
+      //  max-width: 80%;
+      //  font-size: 13px;
+      //}
+    }
+  }
+
+  .content {
+    padding: 14px 44px 50px 47px;
+
+    @media (max-width: $mobile) {
+      padding: 15px 38px 48px;
+    }
+
+    .title {
+      font-family: HeadingNow;
+      font-size: 25px;
+      color: var(--dark-blue);
+      text-transform: uppercase;
+
+      //@media (max-width: $tablet) {
+      //  font-size: 12px;
+      //}
+    }
+
+    .textBlock {
+      display: flex;
+      flex-direction: column;
+      gap: 23px;
+      margin-top: 25px;
+      color: var(--dark-blue);
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 23px;
+
+      @media (max-width: $mobile) {
+        font-size: 12px;
+        line-height: 18px;
+      }
+    }
+
+    .heading {
+      font-family: HeadingNow;
+      font-size: 16px;
+      color: var(--dark-blue);
+      text-transform: uppercase;
+
+      //@media (max-width: $tablet) {
+      //  font-size: 12px;
+      //}
+    }
+
+    .inputWrapper {
+      margin-top: 34px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .userInfo {
+      width: 100%;
+      resize: none;
+      padding: 28px 140px 16px 27px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--dark-blue);
+      min-height: 131px;
+
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+
+      &::placeholder {
+        color: var(--dark-blue);
+      }
+
+      //@media (max-width: $tablet) {
+      //  font-size: 15px;
+      //  padding: 20px 15px 20px;
+      //}
+    }
+
+    .submit {
+      position: absolute;
+      right: 18px;
+      bottom: 16px;
+      padding: 0 30px;
+      font-size: 13px;
+
+      @media (max-width: $tablet) {
+        position: relative;
+        right: initial;
+        bottom: initial;
+        font-size: 11px;
+        padding: 0 25px;
+        margin-top: 20px;
+        margin-left: auto;
+      }
+    }
+  }
+}

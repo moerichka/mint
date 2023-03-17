@@ -1,50 +1,51 @@
 @import "~/src/styles/variables";
+@import "~/src/styles/functions";
 
 .container {
-  margin-left: 140px;
-  margin-top: 63px;
-  width: 480px;
+  margin-left: rem(140px);
+  margin-top: rem(63px);
+  width: rem(480px);
 }
 
 .cubeWrapper {
   position: fixed;
   left: 47%;
   top: 0;
-  width: 618px;
-  height: 681px;
+  width: rem(618px);
+  height: rem(681px);
 }
 
 .cubeImg {
-  margin-top: 115px;
+  margin-top: rem(115px);
 }
 
 .line {
   height: 100vh;
-  width: 290px;
+  width: rem(290px);
   background-color: var(--main-color);
-  margin-left: 172px;
+  margin-left: rem(172px);
 }
 
 .descriptionBtn {
   position: fixed;
-  bottom: 79px;
-  right: 140px;
+  bottom: rem(79px);
+  right: rem(140px);
   background-color: #ffffff;
-  padding: 17px 38px 18px 38px;
-  border-radius: 20px;
+  padding: rem(17px) rem(38px) rem(18px) rem(38px);
+  border-radius: rem(20px);
   font-family: Roboto;
   font-weight: 500;
-  font-size: 20px;
+  font-size: rem(20px);
   line-height: 125%;
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: rem(15px);
   transition: 0.12s;
   transition-timing-function: ease-out;
   transition-property: bottom;
 
   &:hover {
-    bottom: 82px;
+    bottom: rem(82px);
     transition: 0.12s;
     transition-timing-function: ease-out;
     transition-property: bottom;
@@ -53,33 +54,33 @@
 
 .header {
   display: flex;
-  gap: 83px;
+  gap: rem(83px);
   justify-content: flex-start;
   align-items: flex-start;
 }
 
 .logoWrapper {
-  width: 100px;
-  height: 58px;
+  width: rem(100px);
+  height: rem(58px);
   position: relative;
 }
 
 .languageBtn {
   text-transform: uppercase;
   font-weight: 800;
-  font-size: 16px;
+  font-size: rem(16px);
   background-color: #ffffff;
-  padding: 9px 16px 9px 16px;
-  border-radius: 16px;
+  padding: rem(9px) rem(16px) rem(9px) rem(16px);
+  border-radius: rem(16px);
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: rem(4px);
   transition: 0.12s;
   transition-timing-function: ease-out;
   transition-property: margin-top;
 
   &:hover {
-    margin-top: 3px;
+    margin-top: rem(3px);
     transition: 0.12s;
     transition-timing-function: ease-out;
     transition-property: margin-top;
@@ -89,59 +90,59 @@
 .tittle {
   text-transform: uppercase;
   font-family: HeadingNow;
-  margin-top: 190px;
+  margin-top: rem(190px);
   font-weight: 700;
-  font-size: 65px;
+  font-size: rem(65px);
   line-height: 90%;
 }
 
 .nftBlock {
-  margin-top: 176px;
+  margin-top: rem(176px);
   background-color: #ffffff;
-  padding: 39px 20px 40px 45px;
-  border-radius: 25px;
-  width: 320px;
+  padding: rem(39px) rem(20px) rem(40px) rem(45px);
+  border-radius: rem(25px);
+  width: rem(320px);
   font-family: Roboto;
   font-weight: 800;
-  font-size: 18px;
-  line-height: 20px;
+  font-size: rem(18px);
+  line-height: rem(20px);
   text-transform: uppercase;
   color: rgba(144, 167, 188, 1);
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 25px;
+  gap: rem(25px);
 }
 
 .nftAmount {
   font-family: HeadingNow;
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
-  line-height: 20px;
+  font-size: rem(40px);
+  line-height: rem(20px);
   color: $outstandingColor;
 }
 
 .whitelist {
   background-color: $outstandingColor;
-  margin-top: 25px;
-  padding: 17px 0;
-  width: 319px;
-  border-radius: 20px;
+  margin-top: rem(25px);
+  padding: rem(17px) 0;
+  width: rem(319px);
+  border-radius: rem(20px);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: rem(16px);
   text-transform: uppercase;
   font-family: HeadingNow;
   color: #ffffff;
   font-weight: 700;
-  font-size: 30px;
+  font-size: rem(30px);
   line-height: 125%;
   margin-bottom: 0;
   transition: 0.3s;
 
-  @media (min-width: 800px) {
+  @media (min-width: rem(800px)) {
     &:hover {
       transform: translateY(-3px);
     }
@@ -162,7 +163,7 @@
   //display: none;
   color: rgba(100, 119, 136, 1);
   background-color: #e1e6eb;
-  backdrop-filter: blur(25px);
+  backdrop-filter: blur(rem(25px));
 }
 
 // .btnMintOpen{
@@ -172,22 +173,22 @@
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 .heading {
-  padding-top: 175px;
+  padding-top: rem(175px);
   text-transform: uppercase;
   font-family: HeadingNow;
   font-weight: 700;
-  font-size: 50px;
+  font-size: rem(50px);
   line-height: 90%;
 }
 
 .textBlock {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  width: 435px;
-  margin-top: 50px;
+  gap: rem(25px);
+  width: rem(435px);
+  margin-top: rem(50px);
   font-weight: 600;
-  line-height: 25px;
+  line-height: rem(25px);
   letter-spacing: 0;
 }
 
@@ -195,74 +196,74 @@
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
-  gap: 44px;
-  margin-top: 134px;
-  padding-bottom: 48px;
+  gap: rem(44px);
+  margin-top: rem(134px);
+  padding-bottom: rem(48px);
 }
 
 .infoBlock {
-  font-size: 11px;
+  font-size: rem(11px);
   font-weight: 600;
-  line-height: 15px;
+  line-height: rem(15px);
   letter-spacing: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 3px;
+  gap: rem(10px);
+  margin-bottom: rem(3px);
 }
 
 .social {
   display: flex;
-  gap: 50px;
+  gap: rem(50px);
 }
 
 .link {
   position: relative;
   font-family: Roboto;
-  font-size: 12px;
+  font-size: rem(12px);
   font-weight: 500;
-  line-height: 14px;
+  line-height: rem(14px);
   letter-spacing: 0;
 }
 
 .underline {
   position: absolute;
-  bottom: 1px;
+  bottom: rem(1px);
   left: 0;
   background-color: rgba(30, 63, 94, 1);
-  height: 1px;
+  height: rem(1px);
   width: 100%;
 }
 
 .planetSvg {
-  width: 27px;
-  height: 27px;
+  width: rem(27px);
+  height: rem(27px);
 }
 
 .arrowSvg {
-  width: 11px;
-  height: 10px;
+  width: rem(11px);
+  height: rem(10px);
 }
 
 .questionSvg {
-  width: 25px;
-  height: 25px;
+  width: rem(25px);
+  height: rem(25px);
 }
 
 .lockSvg {
-  width: 24px;
-  height: 31px;
-  margin-bottom: 3px;
+  width: rem(24px);
+  height: rem(31px);
+  margin-bottom: rem(3px);
 }
 
 .discordSvg {
-  width: 28px;
-  height: 20px;
+  width: rem(28px);
+  height: rem(20px);
 }
 
 .foxSvg {
-  width: 23px;
-  height: 22px;
+  width: rem(23px);
+  height: rem(22px);
 }
 
 .loaderWrapper {
@@ -272,127 +273,127 @@
   justify-content: center;
 }
 
-@media (max-width: 1260px) {
+@media (max-width: rem(1260px)) {
   .desktop {
     display: none;
   }
 
   .container {
-    margin-left: 40px;
-    width: 300px;
+    margin-left: rem(40px);
+    width: rem(300px);
   }
 
   .descriptionBtn {
-    right: 40px;
+    right: rem(40px);
   }
 
   .cubeWrapper {
-    width: calc(618px - (1260px - var(--window-width)) / 1.5  ) ;
-    height: calc(681px - (1260px - var(--window-width)) / 1.5  ) ;
+    width: calc(rem(618px) - (rem(1260px) - var(--window-width)) / 1.5  ) ;
+    height: calc(rem(681px) - (rem(1260px) - var(--window-width)) / 1.5  ) ;
     //width: 52vw;
     //height: 56vw;
-    min-width: 280px;
-    min-height: 309px;
+    min-width: rem(280px);
+    min-height: rem(309px);
     left: 46%;
   }
 
   .line {
     margin-left: 26%;
-    width: calc(290px - (1260px - var(--window-width)) / 3.6  );
+    width: calc(rem(290px) - (rem(1260px) - var(--window-width)) / 3.6  );
   }
 
   .cubeImg {
-    margin-top: calc(115px + (1260px - var(--window-width)) / 4);
+    margin-top: calc(rem(115px) + (rem(1260px) - var(--window-width)) / 4);
   }
 
   .tittle {
-    margin-top: 120px;
-    font-size: 47px;
+    margin-top: rem(120px);
+    font-size: rem(47px);
   }
 
   .nftBlock {
-    width: 220px;
-    font-size: 15px;
-    gap: 9px;
+    width: rem(220px);
+    font-size: rem(15px);
+    gap: rem(9px);
     align-items: initial;
-    padding: 20px 20px 20px 36px;
-    border-radius: 16px;
+    padding: rem(20px) rem(20px) rem(20px) rem(36px);
+    border-radius: rem(16px);
   }
 
   .whitelist {
-    margin-top: 15px;
-    width: 220px;
-    height: 60px;
+    margin-top: rem(15px);
+    width: rem(220px);
+    height: rem(60px);
   }
 
   .nftAmount {
-    line-height: 16px;
-    font-size: 27px;
+    line-height: rem(16px);
+    font-size: rem(27px);
   }
 
   .btnMintOpen,
   .btnMintClose {
-    font-size: 25px;
+    font-size: rem(25px);
   }
 
   .textBlock {
     width: 100%;
-    margin-top: 50px;
+    margin-top: rem(50px);
   }
 
   .descriptionBtn {
-    margin-top: 15px;
-    width: 220px;
-    font-size: 15px;
-    border-radius: 16px;
-    padding: 12px 0 12px 0;
+    margin-top: rem(15px);
+    width: rem(220px);
+    font-size: rem(15px);
+    border-radius: rem(16px);
+    padding: rem(12px) 0 rem(12px) 0;
     justify-content: center;
-    gap: 12px;
+    gap: rem(12px);
   }
 
   .heading {
-    margin-top: 85px;
-    font-size: 28px;
+    margin-top: rem(85px);
+    font-size: rem(28px);
     padding-top: 0;
   }
 
   .textBlock {
-    margin-top: 40px;
-    font-size: 16px;
-    gap: 12px;
+    margin-top: rem(40px);
+    font-size: rem(16px);
+    gap: rem(12px);
   }
 
   .footer {
-    margin-top: 75px;
+    margin-top: rem(75px);
   }
 
   .link {
-    font-size: 9px;
+    font-size: rem(9px);
   }
 
   .discordSvg {
-    width: 24px;
-    height: 16px;
+    width: rem(24px);
+    height: rem(16px);
   }
 
   .foxSvg {
-    width: 20px;
-    height: 17px;
+    width: rem(20px);
+    height: rem(17px);
   }
 
   .whitelist {
-    font-size: 20px;
-    gap: 10px;
+    font-size: rem(20px);
+    gap: rem(10px);
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: rem(700px)) {
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 20px;
-    width: 320px;
+    padding: 0 rem(20px);
+    width: rem(320px);
     margin-left: auto;
     margin-right: auto;
   }
@@ -403,47 +404,47 @@
   }
 
   .languageBtn {
-    font-size: 14px;
-    padding: 6px 10px 6px 10px;
+    font-size: rem(14px);
+    padding: rem(6px) rem(10px) rem(6px) rem(10px);
     &:hover {
       margin-top: revert;
     }
   }
 
   .planetSvg {
-    width: 21px;
-    height: 25px;
+    width: rem(21px);
+    height: rem(25px);
   }
 
   .arrowSvg {
-    width: 7px;
-    height: 6px;
+    width: rem(7px);
+    height: rem(6px);
   }
 
   .questionSvg {
-    width: 21px;
-    height: 21px;
+    width: rem(21px);
+    height: rem(21px);
   }
 
   .lockSvg {
-    width: 19px;
+    width: rem(19px);
   }
 
   .logoWrapper {
-    width: 80px;
-    height: 47px;
+    width: rem(80px);
+    height: rem(47px);
   }
 
   .cubeWrapper {
     position: relative;
-    width: 280px;
-    height: 309px;
+    width: rem(280px);
+    height: rem(309px);
     left: 0;
-    margin-top: -85px;
+    margin-top: -rem(85px);
   }
 
   .cubeImg {
-    margin-top: 115px;
+    margin-top: rem(115px);
   }
 
   .line {
@@ -461,10 +462,10 @@
   }
 
   .tittle {
-    margin-top: 60px;
+    margin-top: rem(60px);
   }
 
   .textBlock {
-    font-size: 14px;
+    font-size: rem(14px);
   }
 }

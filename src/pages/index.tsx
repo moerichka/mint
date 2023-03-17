@@ -14,7 +14,8 @@ import {
 import { polygonMumbai } from "@wagmi/chains";
 import { useWeb3Modal } from "@web3modal/react";
 
-import ReferralAccessModal from "components/Modal/ReferralAccessModal";
+import ReferralAccessModal from "components/Modal/ExplanationModal";
+import NftResponseModal from "components/Modal/NftResponseModal";
 import Timer from "components/Timer";
 import Loader from "react-loaders";
 
@@ -37,6 +38,7 @@ const IS_WHITELISTED = true;
 
 export default function Home() {
   const [referralModalOpen, setReferralModalOpen] = useState<boolean>(false);
+  const [nftModalOpen, setNftModalOpen] = useState<boolean>(false);
   const [isWhiteListed, setIsWhiteListed] = useState<boolean>(false);
   const [isWhiteListLoading, setIsWhiteListedLoading] =
     useState<boolean>(false);
@@ -122,11 +124,12 @@ export default function Home() {
   const purchaseToken = async () => {
     const { wait } = await salesContractInstance?.purchaseToken();
     await wait(CONFIRMATIONS_COUNT);
-    enqueueSnackbar({
-      variant: "trace",
-      customTitle: "Congratulations!",
-      customMessage: "NFT has been minted",
-    });
+    setNftModalOpen(true);
+    // enqueueSnackbar({
+    //   variant: "trace",
+    //   customTitle: "Congratulations!",
+    //   customMessage: "NFT has been minted",
+    // });
   };
 
   const purchaseTokenWhitelisted = async () => {
@@ -137,11 +140,12 @@ export default function Home() {
       v
     );
     await wait(CONFIRMATIONS_COUNT);
-    enqueueSnackbar({
-      variant: "trace",
-      customTitle: "Congratulations!",
-      customMessage: "NFT has been minted",
-    });
+    setNftModalOpen(true);
+    // enqueueSnackbar({
+    //   variant: "trace",
+    //   customTitle: "Congratulations!",
+    //   customMessage: "NFT has been minted",
+    // });
   };
 
   const handleMint = async () => {
@@ -169,6 +173,9 @@ export default function Home() {
 
   const closeReferralModal = () => {
     setReferralModalOpen(false);
+  };
+  const closeNftModal = () => {
+    setNftModalOpen(false);
   };
 
   const checkWhiteList = async () => {
@@ -367,10 +374,6 @@ export default function Home() {
             </svg>
             <span>How it works?</span>
           </button>
-          <ReferralAccessModal
-            open={referralModalOpen}
-            close={closeReferralModal}
-          />
           <h2 className={s.heading}>
             Only for NFT Pass owners, the following events will open!
           </h2>
@@ -426,6 +429,11 @@ export default function Home() {
           {/*<Web3Button/>*/}
         </div>
 
+        <ReferralAccessModal
+          open={referralModalOpen}
+          close={closeReferralModal}
+        />
+        <NftResponseModal open={nftModalOpen} close={closeNftModal} />
         {/*<button onClick={handleMint}>SSSSSS</button>*/}
       </main>
     </>

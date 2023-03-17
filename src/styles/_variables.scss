@@ -1,6 +1,6 @@
 @import "functions";
 
-$html-font-size: 20px;
+$html-font-size: 15px;
 
 // $backGroundColor: hsla(247, 15%, 12%, 1);
 $backGroundColor: rgb(244, 247, 252);
@@ -9,7 +9,7 @@ $outstandingColor: hsla(32, 100%, 62%, 1);
 $buttonNonActive: hsla(275, 20%, 90%, 0.1);
 $buttonActive: hsla(266, 100%, 69%, 1);
 
-$headerHeight: 58px;
-$headerHeightTablet: 45px;
-$paddingTop: 57.5px;
-$paddingBottom: 42px;
+$headerHeight: rem(58px);
+$headerHeightTablet: rem(45px);
+$paddingTop: rem(57.5px);
+$paddingBottom: rem(42px);

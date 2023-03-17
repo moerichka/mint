@@ -1,53 +1,55 @@
+@import "~/src/styles/functions";
+
 .timer {
   position: fixed;
   display: flex;
   align-items: center;
-  gap: 8px;
-  top: 63px;
-  right: 140px;
+  gap: rem(8px);
+  top: rem(63px);
+  right: rem(140px);
   background-color: #ffffff;
-  padding: 22px 18px 22px 22px;
-  border-radius: 25px;
-  min-width: 235px;
+  padding: rem(22px) rem(18px) rem(22px) rem(22px);
+  border-radius: rem(25px);
+  min-width: rem(235px);
   z-index: 1;
-  @media (max-width: 1260px) {
-    min-width: 162px;
-    right: 40px;
+  @media (max-width: rem(1260px)) {
+    min-width: rem(162px);
+    right: rem(40px);
   }
-  @media (max-width: 700px) {
-    min-width: 150px;
+  @media (max-width: rem(700px)) {
+    min-width: rem(150px);
     position: relative;
     top: 0;
     right: 0;
-    gap: 8px;
-    margin-top: 30px;
+    gap: rem(8px);
+    margin-top: rem(30px);
     text-align: right;
-    width: 150px;
-    padding: 14px 14px 14px 14px;
-    border-radius: 17px;
+    width: rem(150px);
+    padding: rem(14px) rem(14px) rem(14px) rem(14px);
+    border-radius: rem(17px);
   }
 }
 
 .time {
   font-family: HeadingNow;
   font-weight: 700;
-  font-size: 30px;
+  font-size: rem(30px);
   line-height: 100%;
   text-transform: uppercase;
   letter-spacing: 0;
-  @media (max-width: 1260px) {
-    font-size: 18px;
+  @media (max-width: rem(1260px)) {
+    font-size: rem(18px);
     text-align: right;
   }
 }
 
 .clockSvg {
-  width: 30px;
-  height: 30px;
-  margin-bottom: -3px;
+  width: rem(30px);
+  height: rem(30px);
+  margin-bottom: -rem(3px);
 
-  @media (max-width: 1260px) {
-    width: 20px;
-    height: 21px;
+  @media (max-width: rem(1260px)) {
+    width: rem(20px);
+    height: rem(21px);
   }
 }

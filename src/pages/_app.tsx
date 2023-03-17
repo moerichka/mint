@@ -12,6 +12,7 @@ import { Web3Modal } from "@web3modal/react";
 import useMount from "hooks/useMount";
 
 import SnackBar from "components/SnackBar";
+import HeightSetter from "components/helpers/HeightSetter";
 
 import "styles/main.scss";
 
@@ -59,6 +60,7 @@ export default function App({ Component, pageProps }: AppProps) {
         >
           <WagmiConfig client={wagmiClient}>
             <Component {...pageProps} />
+            <HeightSetter />
           </WagmiConfig>
         </SnackbarProvider>
       )}
