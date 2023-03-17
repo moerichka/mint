@@ -11,19 +11,21 @@
   position: fixed;
   left: 47%;
   top: 0;
-  width: rem(618px);
-  height: rem(681px);
+  width: calc(rem(618px) - (rem(1920px) - var(--window-width)) / 3.3  ) ;
+  height: calc(rem(681px) - (rem(1920px) - var(--window-width)) / 3  ) ;
 }
 
 .cubeImg {
-  margin-top: rem(115px);
+  margin-top: calc(rem(115px) + (rem(1920px) - var(--window-width)) / 5.5);
 }
 
 .line {
   height: 100vh;
-  width: rem(290px);
+  width: calc(rem(290px) - (rem(1920px) - var(--window-width)) / 7 );
   background-color: var(--main-color);
-  margin-left: rem(172px);
+  //margin-left: rem(172px);
+  margin-left: 26%;
+  min-width: 130px;
 }
 
 .descriptionBtn {
@@ -288,9 +290,9 @@
   }
 
   .cubeWrapper {
-    width: calc(rem(618px) - (rem(1260px) - var(--window-width)) / 1.5  ) ;
-    height: calc(rem(681px) - (rem(1260px) - var(--window-width)) / 1.5  ) ;
-    //width: 52vw;
+    //width: calc(rem(618px) - (rem(1260px) - var(--window-width)) / 1.5  ) ;
+    //height: calc(rem(681px) - (rem(1260px) - var(--window-width)) / 1.5  ) ;
+    ////width: 52vw;
     //height: 56vw;
     min-width: rem(280px);
     min-height: rem(309px);
@@ -299,11 +301,11 @@
 
   .line {
     margin-left: 26%;
-    width: calc(rem(290px) - (rem(1260px) - var(--window-width)) / 3.6  );
+    //width: calc(rem(290px) - (rem(1260px) - var(--window-width)) / 3.6  );
   }
 
   .cubeImg {
-    margin-top: calc(rem(115px) + (rem(1260px) - var(--window-width)) / 4);
+    //margin-top: calc(rem(115px) + (rem(1260px) - var(--window-width)) / 4);
   }
 
   .tittle {
