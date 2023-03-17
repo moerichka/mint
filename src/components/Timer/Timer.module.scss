@@ -19,8 +19,8 @@
   @media (max-width: rem(700px)) {
     min-width: rem(150px);
     position: relative;
-    top: 0;
-    right: 0;
+    top: initial;
+    right: initial;
     gap: rem(8px);
     margin-top: rem(30px);
     text-align: right;

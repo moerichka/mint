@@ -11,8 +11,8 @@
   position: fixed;
   left: 47%;
   top: 0;
-  width: calc(rem(618px) - (rem(1920px) - var(--window-width)) / 3.3  ) ;
-  height: calc(rem(681px) - (rem(1920px) - var(--window-width)) / 3  ) ;
+  width: calc(rem(618px) - (rem(1920px) - var(--window-width)) / 3.3);
+  height: calc(rem(681px) - (rem(1920px) - var(--window-width)) / 3);
 }
 
 .cubeImg {
@@ -21,7 +21,7 @@
 
 .line {
   height: 100vh;
-  width: calc(rem(290px) - (rem(1920px) - var(--window-width)) / 7 );
+  width: calc(rem(290px) - (rem(1920px) - var(--window-width)) / 7);
   background-color: var(--main-color);
   //margin-left: rem(172px);
   margin-left: 26%;
@@ -52,6 +52,22 @@
     transition-timing-function: ease-out;
     transition-property: bottom;
   }
+}
+
+.firstPart {
+  height: calc(var(--height, 100vh) - $marginTop - $marginBottom);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.secondPart {
+  padding-top: rem(100px);
+  padding-bottom: rem(48px);
+  height: calc(var(--height, 100vh) - $marginBottomFooter - rem(85px));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .header {
@@ -92,14 +108,14 @@
 .tittle {
   text-transform: uppercase;
   font-family: HeadingNow;
-  margin-top: rem(190px);
+  padding-top: rem(100px);
   font-weight: 700;
   font-size: rem(65px);
   line-height: 90%;
 }
 
 .nftBlock {
-  margin-top: rem(176px);
+  // margin-top: rem(176px);
   background-color: #ffffff;
   padding: rem(39px) rem(20px) rem(40px) rem(45px);
   border-radius: rem(25px);
@@ -174,8 +190,13 @@
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+.textPart{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
 .heading {
-  padding-top: rem(175px);
   text-transform: uppercase;
   font-family: HeadingNow;
   font-weight: 700;
@@ -188,7 +209,7 @@
   flex-direction: column;
   gap: rem(25px);
   width: rem(435px);
-  margin-top: rem(50px);
+  // margin-top: rem(50px);
   font-weight: 600;
   line-height: rem(25px);
   letter-spacing: 0;
@@ -199,8 +220,7 @@
   align-items: flex-end;
   justify-content: flex-start;
   gap: rem(44px);
-  margin-top: rem(134px);
-  padding-bottom: rem(48px);
+  // margin-top: rem(134px);
 }
 
 .infoBlock {
@@ -285,6 +305,10 @@
     width: rem(300px);
   }
 
+  .secondPart {
+    height: calc(var(--height, 100vh) - $marginBottomFooter - rem(75px));
+  }
+
   .descriptionBtn {
     right: rem(40px);
   }
@@ -309,7 +333,7 @@
   }
 
   .tittle {
-    margin-top: rem(120px);
+    // margin-top: rem(120px);
     font-size: rem(47px);
   }
 
@@ -340,7 +364,7 @@
 
   .textBlock {
     width: 100%;
-    margin-top: rem(50px);
+    // margin-top: rem(50px);
   }
 
   .descriptionBtn {
@@ -354,19 +378,19 @@
   }
 
   .heading {
-    margin-top: rem(85px);
+    // margin-top: rem(85px);
     font-size: rem(28px);
     padding-top: 0;
   }
 
   .textBlock {
-    margin-top: rem(40px);
+    // margin-top: rem(40px);
     font-size: rem(16px);
     gap: rem(12px);
   }
 
   .footer {
-    margin-top: rem(75px);
+    // margin-top: rem(75px);
   }
 
   .link {
@@ -390,6 +414,18 @@
 }
 
 @media (max-width: rem(700px)) {
+  .firstPart {
+    // height: initial;
+    align-items: center;
+    height: initial;
+  }
+  .secondPart {
+    // height: initial;
+    align-items: center;
+    gap: 40px;
+    height: initial;
+    padding-top: 80px;
+  }
   .container {
     display: flex;
     flex-direction: column;
@@ -441,12 +477,13 @@
     position: relative;
     width: rem(280px);
     height: rem(309px);
-    left: 0;
-    margin-top: -rem(85px);
+    left: initial;
+    margin-top: rem(15px);
   }
 
   .cubeImg {
-    margin-top: rem(115px);
+    // margin-top: rem(115px);
+    margin-top: 0;
   }
 
   .line {
@@ -455,16 +492,16 @@
 
   .descriptionBtn {
     position: relative;
-    bottom: 0;
-    right: 0;
+    bottom: initial;
+    right: initial;
 
     &:hover {
-      bottom: revert;
+      bottom: initial;
     }
   }
 
   .tittle {
-    margin-top: rem(60px);
+    // margin-top: rem(60px);
   }
 
   .textBlock {
