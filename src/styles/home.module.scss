@@ -287,8 +287,10 @@
   }
 
   .cubeWrapper {
-    width: 52vw;
-    height: 56vw;
+    width: calc(618px - (1260px - var(--window-width)) / 1.5  ) ;
+    height: calc(681px - (1260px - var(--window-width)) / 1.5  ) ;
+    //width: 52vw;
+    //height: 56vw;
     min-width: 280px;
     min-height: 309px;
     left: 46%;
@@ -296,7 +298,7 @@
 
   .line {
     margin-left: 26%;
-    width: 26vw;
+    width: calc(290px - (1260px - var(--window-width)) / 3.6  );
   }
 
   .cubeImg {
