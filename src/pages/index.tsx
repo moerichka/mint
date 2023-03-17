@@ -1,9 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
 import Head from "next/head";
 import { enqueueSnackbar } from "notistack";
 import { ethers } from "ethers";
-import { useAccount, useContract, useSigner, useSignMessage } from "wagmi";
+import {
+  useAccount,
+  useContract,
+  useNetwork,
+  useSigner,
+  useSignMessage,
+  useSwitchNetwork,
+} from "wagmi";
+import { polygonMumbai } from "@wagmi/chains";
 import { useWeb3Modal } from "@web3modal/react";
 
 import ReferralAccessModal from "components/Modal/ReferralAccessModal";
@@ -23,6 +31,8 @@ const REACT_APP_API_ENDPOINT = "https://trace-core.flamma.app";
 
 const CONFIRMATIONS_COUNT = 10;
 
+const CURRENT_CHAIN_ID = polygonMumbai.id; // TODO: изменить на polygon.id при релизе на продакшн
+
 const IS_WHITELISTED = true;
 
 export default function Home() {
@@ -32,10 +42,16 @@ export default function Home() {
     useState<boolean>(false);
   const [isServerAnswered, setIsServerAnswered] = useState<boolean>(false);
 
+  const [count, setCount] = useState<string>();
+
   const { open } = useWeb3Modal();
   const { data: signer } = useSigner();
 
   const { address } = useAccount();
+
+  const { chain } = useNetwork();
+
+  const { switchNetwork } = useSwitchNetwork();
 
   const { signMessageAsync } = useSignMessage();
 
@@ -52,9 +68,47 @@ export default function Home() {
   });
 
   const getNFTCount = async () => {
+    if (address === undefined) throw new Error("Address does not exist");
     const response = await nftContactInstance?.balanceOf(address);
-    return response?.toString(); // строка "0", либо "1", "2"
+    return response?.toString(); // '0' | '1' | '2'
   };
+
+  const isInitializing =
+    address === undefined ||
+    chain === undefined ||
+    switchNetwork === undefined ||
+    signer === undefined;
+
+  const isButtonEnabled = useMemo<boolean>(() => {
+    if (count === undefined) return false;
+    if (count === "2" && isWhiteListed) return false;
+    if (count === "1" && !isWhiteListed) return false;
+    return true;
+  }, [count, isWhiteListed]);
+
+  useEffect(() => {
+    if (isInitializing) return;
+
+    const initialize = async () => {
+      try {
+        if (chain?.id !== CURRENT_CHAIN_ID) {
+          switchNetwork(CURRENT_CHAIN_ID);
+        } else {
+          const nftCount = await getNFTCount();
+          setCount(nftCount);
+        }
+      } catch (error: any) {
+        enqueueSnackbar({
+          variant: "trace",
+          customTitle: "Error",
+          customMessage: error?.error,
+          type: "error",
+        });
+      }
+    };
+
+    initialize();
+  }, [isInitializing]);
 
   const generateSignature = async () => {
     if (address === undefined) throw new Error("Address does not exist");
@@ -92,13 +146,22 @@ export default function Home() {
 
   const handleMint = async () => {
     try {
+      if (!isButtonEnabled) {
+        enqueueSnackbar({
+          variant: "trace",
+          customTitle: "Not allowed",
+          customMessage: "You've already received nft!",
+          type: "default",
+        });
+        return;
+      }
       if (isWhiteListed) purchaseTokenWhitelisted().then();
       else purchaseToken().then();
     } catch (error: any) {
       enqueueSnackbar({
         variant: "trace",
         customTitle: "Error",
-        customMessage: error?.message,
+        customMessage: error?.error,
         type: "error",
       });
     }

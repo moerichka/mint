@@ -17,7 +17,7 @@ import "styles/main.scss";
 
 const PROJECT_ID = "55a46104116b85c198082f61991beb2b";
 
-const chains = [polygon, polygonMumbai];
+const chains = [polygon, polygonMumbai]; // TODO: удалить polygonMumbai при релизе на продакшн
 
 const { provider } = configureChains(chains, [
   walletConnectProvider({ projectId: PROJECT_ID }),
