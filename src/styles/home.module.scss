@@ -35,16 +35,19 @@
   background-color: #ffffff;
   padding: rem(17px) rem(38px) rem(18px) rem(38px);
   border-radius: rem(20px);
-  font-family: Roboto;
-  font-weight: 500;
-  font-size: rem(20px);
-  line-height: 125%;
   display: flex;
   align-items: center;
   gap: rem(15px);
   transition: 0.12s;
   transition-timing-function: ease-out;
   transition-property: bottom;
+
+  .text {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: rem(20px);
+    line-height: 125%;
+  }
 
   &:hover {
     bottom: rem(82px);
@@ -62,7 +65,7 @@
 }
 
 .secondPart {
-  padding-top: rem(100px);
+  // padding-top: rem(100px);
   padding-bottom: rem(48px);
   height: calc(var(--height, 100vh) - $marginBottomFooter - rem(85px));
   display: flex;
@@ -120,7 +123,7 @@
   padding: rem(39px) rem(20px) rem(40px) rem(45px);
   border-radius: rem(25px);
   width: rem(320px);
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-weight: 800;
   font-size: rem(18px);
   line-height: rem(20px);
@@ -190,7 +193,7 @@
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-.textPart{
+.textPart {
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -241,7 +244,7 @@
 
 .link {
   position: relative;
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-size: rem(12px);
   font-weight: 500;
   line-height: rem(14px);
@@ -370,11 +373,14 @@
   .descriptionBtn {
     margin-top: rem(15px);
     width: rem(220px);
-    font-size: rem(15px);
     border-radius: rem(16px);
     padding: rem(12px) 0 rem(12px) 0;
     justify-content: center;
     gap: rem(12px);
+
+    .text {
+      font-size: rem(15px);
+    }
   }
 
   .heading {
@@ -425,6 +431,9 @@
     gap: 40px;
     height: initial;
     padding-top: 80px;
+  }
+  .empty {
+    display: none;
   }
   .container {
     display: flex;

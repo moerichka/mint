@@ -372,9 +372,10 @@ export default function Home() {
                 clipRule="evenodd"
               />
             </svg>
-            <span>How it works?</span>
+            <span className={s.text}>How it works?</span>
           </button>
           <div className={s.secondPart}>
+            <div className={s.empty} />
             <div className={s.textPart}>
               <h2 className={s.heading}>
                 Only for NFT Pass owners, the following events will open!
