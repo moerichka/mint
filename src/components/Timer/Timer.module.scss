@@ -37,6 +37,7 @@
   line-height: 100%;
   text-transform: uppercase;
   letter-spacing: 0;
+  white-space: nowrap;
   @media (max-width: rem(1260px)) {
     font-size: rem(18px);
     text-align: right;
