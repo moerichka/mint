@@ -14,7 +14,7 @@ interface SnackBarProps extends CustomContentProps {
   id: SnackbarKey;
   customTitle: React.ReactNode;
   customMessage: React.ReactNode;
-  type: "error" | "default";
+  type: "error" | "default" | "correct";
 }
 
 const SnackBar = forwardRef<HTMLDivElement, SnackBarProps>(
@@ -25,20 +25,23 @@ const SnackBar = forwardRef<HTMLDivElement, SnackBarProps>(
       closeSnackbar(id);
     }, [id, closeSnackbar]);
 
-    const snackBarClass = `${s.snackBar} ${type === "error" ? s.error : ""}`;
+    const snackBarClass = `${s.snackBar} ${s[type]}`;
 
     return (
-      <SnackbarContent {...props} ref={ref} className={snackBarClass} >
+      <SnackbarContent {...props} ref={ref} className={snackBarClass}>
         <div className={s.content}>
           {customTitle && <div className={s.title}>{customTitle}</div>}
           {customMessage && <div className={s.message}>{customMessage}</div>}
         </div>
         <button type="button" className={s.closeButton} onClick={handleDismiss}>
-          <span className="icon-close" />
+          <div className={s.iconClose}>
+            <span className={s.line} />
+            <span className={s.line} />
+          </div>
         </button>
       </SnackbarContent>
     );
-  },
+  }
 );
 
 SnackBar.displayName = "SnackBar";

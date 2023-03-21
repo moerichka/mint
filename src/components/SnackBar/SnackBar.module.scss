@@ -14,7 +14,16 @@
     color: hsla(220, 23%, 97%, 1);
 
     .closeButton {
-      color: hsla(0, 0%, 100%, 0.5);
+      opacity: 0.5;
+    }
+  }
+
+  &.correct {
+    background-color: hsla(144, 70%, 64%, 1);
+    color: hsla(220, 23%, 97%, 1);
+
+    .closeButton {
+      opacity: 0.5;
     }
   }
 
@@ -39,7 +48,7 @@
 
   .title {
     font-family: HeadingNow;
-    font-size: rem(18px);
+    font-size: rem(24px);
     text-transform: uppercase;
     display: flex;
     flex-direction: row;
@@ -54,7 +63,7 @@
   .message {
     font-family: Manrope;
     font-weight: 600;
-    font-size: rem(15px);
+    font-size: rem(19px);
     line-height: 125%;
 
     @media (max-width: rem(480px)) {
@@ -71,4 +80,25 @@
   font-size: rem(12px);
   top: rem(25px);
   right: rem(21px);
+}
+
+.iconClose {
+  position: relative;
+  width: 20px;
+  height: 20px;
+
+  .line {
+    position: absolute;
+    display: block;
+    background-color: hsla(0, 0%, 40%, 1);
+    height: 2px;
+    width: 120%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+
+    &:nth-child(2) {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
 }

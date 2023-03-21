@@ -103,7 +103,7 @@ export default function Home() {
         enqueueSnackbar({
           variant: "trace",
           customTitle: "Error",
-          customMessage: error?.error,
+          customMessage: error?.message,
           type: "error",
         });
       }
@@ -155,7 +155,7 @@ export default function Home() {
           variant: "trace",
           customTitle: "Not allowed",
           customMessage: "You've already received nft!",
-          type: "default",
+          type: "error",
         });
         return;
       }
@@ -165,7 +165,7 @@ export default function Home() {
       enqueueSnackbar({
         variant: "trace",
         customTitle: "Error",
-        customMessage: error?.error,
+        customMessage: error?.message,
         type: "error",
       });
     }
@@ -198,6 +198,7 @@ export default function Home() {
           variant: "trace",
           customTitle: "Server response",
           customMessage: "You are in whitelist",
+          type: "correct",
         });
       } else {
         enqueueSnackbar({
@@ -228,7 +229,7 @@ export default function Home() {
     windowWidth();
     window.onresize = windowWidth;
   }, []);
-
+  
   return (
     <>
       <Head>

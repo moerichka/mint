@@ -147,7 +147,8 @@
 .whitelist {
   background-color: $outstandingColor;
   margin-top: rem(25px);
-  padding: rem(17px) 0;
+  // padding: rem(17px) 0;
+  height: rem(70px);
   width: rem(319px);
   border-radius: rem(20px);
   display: flex;
@@ -292,6 +293,7 @@
 }
 
 .loaderWrapper {
+  height: 100%;
   width: 100%;
   display: flex;
   align-items: center;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import s from "./Timer.module.scss";
 
-const endDate = new Date("Mar 20, 2023 00:00:00").getTime();
+const endDate = new Date("Mar 28, 2023 00:00:00").getTime();
 
 const getLeftTime = () => {
   const now = new Date().getTime();

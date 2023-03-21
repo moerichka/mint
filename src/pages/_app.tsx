@@ -42,7 +42,7 @@ declare module "notistack" {
     trace: {
       customTitle?: React.ReactNode;
       customMessage?: React.ReactNode;
-      type?: "error" | "default";
+      type?: "error" | "default" | "correct";
     };
   }
 }
@@ -57,6 +57,7 @@ export default function App({ Component, pageProps }: AppProps) {
           Components={{
             trace: SnackBar,
           }}
+          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           <WagmiConfig client={wagmiClient}>
             <Component {...pageProps} />
