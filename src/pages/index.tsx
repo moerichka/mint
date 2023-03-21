@@ -34,7 +34,7 @@ const CONFIRMATIONS_COUNT = 10;
 
 const CURRENT_CHAIN_ID = polygonMumbai.id; // TODO: изменить на polygon.id при релизе на продакшн
 
-const IS_WHITELISTED = true;
+const STAGE: "start" | "public" | "everyone" = "start";
 
 export default function Home() {
   const [referralModalOpen, setReferralModalOpen] = useState<boolean>(false);
@@ -82,10 +82,19 @@ export default function Home() {
     signer === undefined;
 
   const isButtonEnabled = useMemo<boolean>(() => {
-    if (count === undefined) return false;
-    if (count === "2" && isWhiteListed) return false;
-    if (count === "1" && !isWhiteListed) return false;
-    return true;
+    if (STAGE === "everyone") {
+      if (count === undefined) return false;
+      if (count === "2" && isWhiteListed) return false;
+      if (count === "1" && !isWhiteListed) return false;
+      return true;
+    } else if (STAGE === "public") {
+      if (count === undefined) return false;
+      if ((count === "1" || count === "2") && isWhiteListed) return false;
+      if (!isWhiteListed) return false;
+      return true;
+    } else {
+      return false;
+    }
   }, [count, isWhiteListed]);
 
   useEffect(() => {
@@ -151,12 +160,21 @@ export default function Home() {
   const handleMint = async () => {
     try {
       if (!isButtonEnabled) {
-        enqueueSnackbar({
-          variant: "trace",
-          customTitle: "Not allowed",
-          customMessage: "You've already received nft!",
-          type: "error",
-        });
+        if (STAGE === "everyone" || (STAGE === "public" && isWhiteListed)) {
+          enqueueSnackbar({
+            variant: "trace",
+            customTitle: "Not allowed",
+            customMessage: "You've already received nft!",
+            type: "error",
+          });
+        } else if (!isWhiteListed) {
+          enqueueSnackbar({
+            variant: "trace",
+            customTitle: "Not allowed",
+            customMessage: "You can't mint yet",
+            type: "error",
+          });
+        }
         return;
       }
       if (isWhiteListed) purchaseTokenWhitelisted().then();
@@ -229,7 +247,7 @@ export default function Home() {
     windowWidth();
     window.onresize = windowWidth;
   }, []);
-  
+
   return (
     <>
       <Head>
@@ -329,29 +347,38 @@ export default function Home() {
                   )}
                 </button>
               )}
-              {/* <button className={s.whitelist + " " + s.btnMintClose}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={s.lockSvg}
-                  fill="none"
-                  viewBox="0 0 24 32"
-                >
-                  <path
-                    fill="#647788"
-                    fillOpacity=".5"
-                    d="M23.333 12h-2V9.333C21.333 4.187 17.147 0 12 0 6.854 0 2.667 4.187 2.667 9.333V12h-2a.666.666 0 0 0-.667.667v16.666A2.67 2.67 0 0 0 2.667 32h18.666A2.67 2.67 0 0 0 24 29.333V12.667a.666.666 0 0 0-.667-.667Zm-9.757 10.145.42 3.781a.668.668 0 0 1-.663.74h-2.666a.667.667 0 0 1-.663-.74l.42-3.781A2.637 2.637 0 0 1 9.335 20 2.67 2.67 0 0 1 12 17.333 2.67 2.67 0 0 1 14.667 20c0 .862-.409 1.648-1.091 2.145ZM17.332 12H6.667V9.333A5.34 5.34 0 0 1 12 4a5.34 5.34 0 0 1 5.333 5.333V12Z"
-                  />
-                </svg>
-                <span>Mint</span>
-              </button> */}
-              {isServerAnswered && (
-                <button
-                  className={s.whitelist + " " + s.btnMintOpen}
-                  onClick={handleMint}
-                >
-                  <span>Mint</span>
-                </button>
-              )}
+              {isServerAnswered &&
+                (STAGE === "start" ||
+                  (STAGE === "public" && !isWhiteListed)) && (
+                  <button
+                    className={s.whitelist + " " + s.btnMintClose}
+                    onClick={handleMint}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={s.lockSvg}
+                      fill="none"
+                      viewBox="0 0 24 32"
+                    >
+                      <path
+                        fill="#647788"
+                        fillOpacity=".5"
+                        d="M23.333 12h-2V9.333C21.333 4.187 17.147 0 12 0 6.854 0 2.667 4.187 2.667 9.333V12h-2a.666.666 0 0 0-.667.667v16.666A2.67 2.67 0 0 0 2.667 32h18.666A2.67 2.67 0 0 0 24 29.333V12.667a.666.666 0 0 0-.667-.667Zm-9.757 10.145.42 3.781a.668.668 0 0 1-.663.74h-2.666a.667.667 0 0 1-.663-.74l.42-3.781A2.637 2.637 0 0 1 9.335 20 2.67 2.67 0 0 1 12 17.333 2.67 2.67 0 0 1 14.667 20c0 .862-.409 1.648-1.091 2.145ZM17.332 12H6.667V9.333A5.34 5.34 0 0 1 12 4a5.34 5.34 0 0 1 5.333 5.333V12Z"
+                      />
+                    </svg>
+                    <span>Mint</span>
+                  </button>
+                )}
+              {isServerAnswered &&
+                (STAGE === "everyone" ||
+                  (STAGE === "public" && isWhiteListed)) && (
+                  <button
+                    className={s.whitelist + " " + s.btnMintOpen}
+                    onClick={handleMint}
+                  >
+                    <span>Mint</span>
+                  </button>
+                )}
             </div>
           </div>
 

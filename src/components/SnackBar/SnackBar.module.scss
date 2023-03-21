@@ -14,7 +14,11 @@
     color: hsla(220, 23%, 97%, 1);
 
     .closeButton {
-      opacity: 0.5;
+      .iconClose{
+        .line{
+          background-color: hsla(0, 0%, 100%, 1);
+        }
+      }
     }
   }
 
@@ -23,7 +27,11 @@
     color: hsla(220, 23%, 97%, 1);
 
     .closeButton {
-      opacity: 0.5;
+      .iconClose{
+        .line{
+          background-color: hsla(0, 0%, 100%, 1);
+        }
+      }
     }
   }
 
