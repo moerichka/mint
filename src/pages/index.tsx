@@ -37,12 +37,14 @@ const CURRENT_CHAIN_ID = polygonMumbai.id; // TODO: изменить на polygo
 const STAGE: "start" | "public" | "everyone" = "start";
 
 export default function Home() {
+  const [isInitial, setIsInitial] = useState(true);
   const [referralModalOpen, setReferralModalOpen] = useState<boolean>(false);
   const [nftModalOpen, setNftModalOpen] = useState<boolean>(false);
   const [isWhiteListed, setIsWhiteListed] = useState<boolean>(false);
   const [isWhiteListLoading, setIsWhiteListedLoading] =
     useState<boolean>(false);
   const [isServerAnswered, setIsServerAnswered] = useState<boolean>(false);
+  const [isConfirmationWaiting, setIsConfirmationWaiting] = useState(false);
 
   const [count, setCount] = useState<string>();
 
@@ -131,47 +133,77 @@ export default function Home() {
   };
 
   const purchaseToken = async () => {
+    setIsConfirmationWaiting(true);
     const { wait } = await salesContractInstance?.purchaseToken();
+    enqueueSnackbar({
+      variant: "trace",
+      customTitle: "Processing",
+      customMessage: "Awaiting confirmation...",
+      type: "default",
+    });
     await wait(CONFIRMATIONS_COUNT);
     setNftModalOpen(true);
-    // enqueueSnackbar({
-    //   variant: "trace",
-    //   customTitle: "Congratulations!",
-    //   customMessage: "NFT has been minted",
-    // });
+    setIsConfirmationWaiting(false);
+    const nftCount = await getNFTCount();
+    setCount(nftCount);
   };
 
   const purchaseTokenWhitelisted = async () => {
+    setIsConfirmationWaiting(true);
     const { r, s, v } = await generateSignature();
     const { wait } = await salesContractInstance?.purchaseTokenWhiteListed(
       r,
       s,
       v
     );
+    enqueueSnackbar({
+      variant: "trace",
+      customTitle: "Processing",
+      customMessage: "Awaiting confirmation...",
+      type: "default",
+    });
     await wait(CONFIRMATIONS_COUNT);
     setNftModalOpen(true);
-    // enqueueSnackbar({
-    //   variant: "trace",
-    //   customTitle: "Congratulations!",
-    //   customMessage: "NFT has been minted",
-    // });
+    setIsConfirmationWaiting(false);
+    const nftCount = await getNFTCount();
+    setCount(nftCount);
   };
 
   const handleMint = async () => {
     try {
       if (!isButtonEnabled) {
-        if (STAGE === "everyone" || (STAGE === "public" && isWhiteListed)) {
+        if (STAGE === "start") {
           enqueueSnackbar({
             variant: "trace",
-            customTitle: "Not allowed",
-            customMessage: "You've already received nft!",
+            customTitle: "Sorry...",
+            customMessage:
+              "Mint hasn't started yet. Please stay tuned for updates.",
+            type: "error",
+          });
+        } else if (
+          STAGE === "everyone" ||
+          (STAGE === "public" && isWhiteListed)
+        ) {
+          enqueueSnackbar({
+            variant: "trace",
+            customTitle: "Oops!",
+            customMessage: "Minting more NFT Passes is currently unavailable.",
+            type: "error",
+          });
+        } else if (!isWhiteListed && STAGE === "public") {
+          enqueueSnackbar({
+            variant: "trace",
+            customTitle: "Sorry...",
+            customMessage:
+              "Your wallet is not on the Whitelist. Mint is currently unavailable for you.",
             type: "error",
           });
         } else if (!isWhiteListed) {
           enqueueSnackbar({
             variant: "trace",
-            customTitle: "Not allowed",
-            customMessage: "You can't mint yet",
+            customTitle: "Sorry...",
+            customMessage:
+              "Mint hasn't started yet. Please stay tuned for updates.",
             type: "error",
           });
         }
@@ -180,6 +212,7 @@ export default function Home() {
       if (isWhiteListed) purchaseTokenWhitelisted().then();
       else purchaseToken().then();
     } catch (error: any) {
+      setIsConfirmationWaiting(false);
       enqueueSnackbar({
         variant: "trace",
         customTitle: "Error",
@@ -211,11 +244,13 @@ export default function Home() {
       }
       const data = await response.json();
       if (data.result) {
+      // if (true) {
         setIsWhiteListed(data.result);
+        // setIsWhiteListed(true);
         enqueueSnackbar({
           variant: "trace",
           customTitle: "Server response",
-          customMessage: "You are in whitelist",
+          customMessage: "You are in whitelist!",
           type: "correct",
         });
       } else {
@@ -247,6 +282,19 @@ export default function Home() {
     windowWidth();
     window.onresize = windowWidth;
   }, []);
+
+  useEffect(() => {
+    if (isInitial) {
+      setIsInitial(false);
+      return;
+    }
+    enqueueSnackbar({
+      variant: "trace",
+      customTitle: "Congratulations!",
+      customMessage: "Wallet has been connected",
+      type: "correct",
+    });
+  }, [address]);
 
   return (
     <>
@@ -347,38 +395,41 @@ export default function Home() {
                   )}
                 </button>
               )}
-              {isServerAnswered &&
-                (STAGE === "start" ||
-                  (STAGE === "public" && !isWhiteListed)) && (
-                  <button
-                    className={s.whitelist + " " + s.btnMintClose}
-                    onClick={handleMint}
+              {isServerAnswered && address && !isButtonEnabled && (
+                <button
+                  className={s.whitelist + " " + s.btnMintClose}
+                  onClick={handleMint}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={s.lockSvg}
+                    fill="none"
+                    viewBox="0 0 24 32"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className={s.lockSvg}
-                      fill="none"
-                      viewBox="0 0 24 32"
-                    >
-                      <path
-                        fill="#647788"
-                        fillOpacity=".5"
-                        d="M23.333 12h-2V9.333C21.333 4.187 17.147 0 12 0 6.854 0 2.667 4.187 2.667 9.333V12h-2a.666.666 0 0 0-.667.667v16.666A2.67 2.67 0 0 0 2.667 32h18.666A2.67 2.67 0 0 0 24 29.333V12.667a.666.666 0 0 0-.667-.667Zm-9.757 10.145.42 3.781a.668.668 0 0 1-.663.74h-2.666a.667.667 0 0 1-.663-.74l.42-3.781A2.637 2.637 0 0 1 9.335 20 2.67 2.67 0 0 1 12 17.333 2.67 2.67 0 0 1 14.667 20c0 .862-.409 1.648-1.091 2.145ZM17.332 12H6.667V9.333A5.34 5.34 0 0 1 12 4a5.34 5.34 0 0 1 5.333 5.333V12Z"
-                      />
-                    </svg>
-                    <span>Mint</span>
-                  </button>
-                )}
-              {isServerAnswered &&
-                (STAGE === "everyone" ||
-                  (STAGE === "public" && isWhiteListed)) && (
-                  <button
-                    className={s.whitelist + " " + s.btnMintOpen}
-                    onClick={handleMint}
-                  >
-                    <span>Mint</span>
-                  </button>
-                )}
+                    <path
+                      fill="#647788"
+                      fillOpacity=".5"
+                      d="M23.333 12h-2V9.333C21.333 4.187 17.147 0 12 0 6.854 0 2.667 4.187 2.667 9.333V12h-2a.666.666 0 0 0-.667.667v16.666A2.67 2.67 0 0 0 2.667 32h18.666A2.67 2.67 0 0 0 24 29.333V12.667a.666.666 0 0 0-.667-.667Zm-9.757 10.145.42 3.781a.668.668 0 0 1-.663.74h-2.666a.667.667 0 0 1-.663-.74l.42-3.781A2.637 2.637 0 0 1 9.335 20 2.67 2.67 0 0 1 12 17.333 2.67 2.67 0 0 1 14.667 20c0 .862-.409 1.648-1.091 2.145ZM17.332 12H6.667V9.333A5.34 5.34 0 0 1 12 4a5.34 5.34 0 0 1 5.333 5.333V12Z"
+                    />
+                  </svg>
+                  <span>Mint</span>
+                </button>
+              )}
+              {isServerAnswered && address && isButtonEnabled && (
+                <button
+                  className={s.whitelist + " " + s.btnMintOpen}
+                  onClick={handleMint}
+                  disabled={isConfirmationWaiting}
+                >
+                  {!isConfirmationWaiting && <span>Mint</span>}
+
+                  {isConfirmationWaiting && (
+                    <div className={s.loaderWrapper}>
+                      <Loader type="line-scale-pulse-out-rapid" active />
+                    </div>
+                  )}
+                </button>
+              )}
             </div>
           </div>
 
